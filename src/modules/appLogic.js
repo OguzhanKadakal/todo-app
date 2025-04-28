@@ -2,7 +2,7 @@ import Project from "./project";
 
 class AppState {
     constructor() {
-        this.project = [];
+        this.projects = [];
         this.selectedProject = null;
     }
 }
