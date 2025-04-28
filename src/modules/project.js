@@ -1,5 +1,6 @@
 class Project {
     constructor(title,todos) {
+        this.id = `${Date.now()}-${Math.random()}`;
         this.title = title;
         this.todos = [];
     }

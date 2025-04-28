@@ -8,8 +8,8 @@ class Todo {
         this.completed = false;
     }
 
-    markAsCompleted() {
-        this.completed = true;
+    toggleCompleted() {
+        this.completed = !this.completed;
     }
 
     updateDetails({ title, description, dueDate, priority }) {
