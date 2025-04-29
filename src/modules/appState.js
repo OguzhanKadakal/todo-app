@@ -5,4 +5,8 @@ class AppState {
         this.projects = [];
         this.selectedProject = null;
     }
+
+    removeProject(project){
+        this.projects = this.projects.filter(p => p !== project);
+    }
 }

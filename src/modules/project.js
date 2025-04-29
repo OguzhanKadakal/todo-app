@@ -4,7 +4,13 @@ class Project {
         this.title = title;
         this.todos = [];
     }
-    
+
+    updateTitle(title) {
+        if (title) {
+            this.title = title;
+        }
+    }
+
     addTodo(todo){
         this.todos.push(todo);
     }
