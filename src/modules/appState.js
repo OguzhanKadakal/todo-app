@@ -1,4 +1,4 @@
-import Project from "./project";
+import Project from "./project.js";
 
 class AppState {
     constructor() {
@@ -31,5 +31,6 @@ class AppState {
 
     //setSelectedProject
 }
+
 
 export default AppState;

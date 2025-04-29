@@ -18,10 +18,6 @@ class Project {
     removeTodo(todo) {
         this.todos = this.todos.filter(t => t !== todo);
     }
-
-    getTodos() {
-        return this.todos;
-    }
 }
 
 export default Project;

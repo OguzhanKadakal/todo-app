@@ -2,6 +2,11 @@ import Project from "./project";
 import Todo from "./todo.js";
 import AppState from "./appState.js";
 
+// Create an instance of AppState
+const appState = new AppState();
+appState.initializeApp(); // Initialize the app with the default project
+
+
 export function createElement(tag, attributes = {}, textContent = "") {
   const element = document.createElement(tag);
   Object.keys(attributes).forEach((key) =>
@@ -31,7 +36,7 @@ function renderProjectContainer() {
 }
 function renderProjectItems() {
     const projectContainer = document.querySelector("#project-container");
-    AppState.projects.forEach((p) => {
+    appState.projects.forEach((p) => {
         const projectItem = createElement("li", { id: `${p.id}` }, p.title);
         projectContainer.append(projectItem);
     });
