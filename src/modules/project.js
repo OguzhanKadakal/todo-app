@@ -11,11 +11,11 @@ class Project {
         }
     }
 
-    addTodo(todo){
+    addTodo(todo) {
         this.todos.push(todo);
     }
 
-    removeTodo(todo){
+    removeTodo(todo) {
         this.todos = this.todos.filter(t => t !== todo);
     }
 
