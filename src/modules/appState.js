@@ -29,7 +29,7 @@ class AppState {
         this.selectedProject = defaultProject;
     }
 
-    setSelectedProject
+    //setSelectedProject
 }
 
 export default AppState;
