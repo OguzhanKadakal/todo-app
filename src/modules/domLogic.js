@@ -15,12 +15,14 @@ export function createElement(tag, attributes = {}, textContent = "") {
 export function initializeUI() {
   const app = document.querySelector("#app");
   const sidebarEl = createElement("div", { class: "left-sidebar" });
-  const mainEl = createElement("div", { class: "content-container" });
+  const mainEl = createElement("div", { class: "tasks-container" });
   app.append(sidebarEl, mainEl);
   renderAppLogo()
-  renderProjectContainer();
+  renderProjectsContainer();
   renderProjectItems();
   renderAddProjectButton()
+
+  renderTaskContainer()
 }
 
 function createProjectContainer(id) {
@@ -31,7 +33,7 @@ function createIcon(iconClassName, iconText) {
   return createElement("span", { class: iconClassName }, iconText);
 }
 
-function renderProjectContainer() {
+function renderProjectsContainer() {
   const leftSidebar = document.querySelector(".left-sidebar");
   const projectContainer = createProjectContainer("project-container",);
   leftSidebar.append(projectContainer);
@@ -70,4 +72,14 @@ function renderAddProjectButton() {
   const leftSidebar = document.querySelector(".left-sidebar");
   const addProjectButton = createElement("button", {id: "add-project-btn"}, "+ Add Project");
   leftSidebar.append(addProjectButton)
+}
+
+function renderTaskContainer() {
+  const tasksContainer = document.querySelector(".tasks-container");
+
+  const tasksContainerHeader = createElement("div", {id: "tasks-container-header"});
+  const projectTitle = createElement("h1", {id: "project-title"}, appState.selectedProject?.title || "Untitled Project");
+
+  tasksContainer.append(tasksContainerHeader);
+  tasksContainerHeader.append(projectTitle);
 }

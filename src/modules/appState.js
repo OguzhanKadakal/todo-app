@@ -26,6 +26,7 @@ class AppState {
     initializeApp() {
         const defaultProject = new Project("Default");
         this.projects.push(defaultProject);
+        defaultProject.defaultTodos(); //for testing
         this.selectedProject = defaultProject;
     }
 
