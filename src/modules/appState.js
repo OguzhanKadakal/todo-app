@@ -31,5 +31,9 @@ class AppState {
 
 }
 
+// Create an instance of AppState
+const appState = new AppState();
+appState.initializeApp(); // Initialize the app with the default project
 
-export default AppState;
+
+export default appState;

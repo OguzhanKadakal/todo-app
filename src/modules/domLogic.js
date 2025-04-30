@@ -1,12 +1,7 @@
 import Project from "./project";
 import Todo from "./todo.js";
-import AppState from "./appState.js";
+import appState from "./appState.js";
 import { id } from "date-fns/locale";
-
-// Create an instance of AppState
-const appState = new AppState();
-appState.initializeApp(); // Initialize the app with the default project
-
 
 export function createElement(tag, attributes = {}, textContent = "") {
   const element = document.createElement(tag);
@@ -48,8 +43,7 @@ function renderProjectItems() {
         const projectItem = createElement("li", { id: `${p.id}`, class:"project-item" }, p.title);
         const editIcon = createIcon("material-symbols-outlined", "edit_square");
         const deleteIcon = createIcon("material-symbols-outlined", "delete")
-        projectItem.append(editIcon);
-        projectItem.append(deleteIcon);
+        projectItem.append(editIcon, deleteIcon);
         projectContainer.append(projectItem);
     });
 }
