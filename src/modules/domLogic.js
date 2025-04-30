@@ -33,20 +33,32 @@ function createIcon(iconClassName, iconText) {
 
 function renderProjectContainer() {
   const leftSidebar = document.querySelector(".left-sidebar");
-  const projectContainer = createProjectContainer("project-container");
+  const projectContainer = createProjectContainer("project-container",);
   leftSidebar.append(projectContainer);
 }
 
 function renderProjectItems() {
-    const projectContainer = document.querySelector("#project-container");
-    appState.projects.forEach((p) => {
-        const projectItem = createElement("li", { id: `${p.id}`, class:"project-item" }, p.title);
-        const editIcon = createIcon("material-symbols-outlined", "edit_square");
-        const deleteIcon = createIcon("material-symbols-outlined", "delete")
-        projectItem.append(editIcon, deleteIcon);
-        projectContainer.append(projectItem);
-    });
+  const projectContainer = document.querySelector("#project-container");
+  projectContainer.innerHTML = ""; //Clear existing items before rendering
+
+  appState.projects.forEach((p) => {
+    const projectItem = createElement(
+      "li",
+      {
+        class: "project-item",
+        "data-id": p.id, //data-id for easier reference
+      },
+      p.title
+    );
+
+    const editIcon = createIcon("material-symbols-outlined", "edit_square");
+    const deleteIcon = createIcon("material-symbols-outlined", "delete");
+
+    projectItem.append(editIcon, deleteIcon);
+    projectContainer.append(projectItem);
+  });
 }
+
 
 function renderAppLogo() {
   const leftSidebar = document.querySelector(".left-sidebar");
