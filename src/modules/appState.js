@@ -29,7 +29,6 @@ class AppState {
         this.selectedProject = defaultProject;
     }
 
-    //setSelectedProject
 }
 
 
