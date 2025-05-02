@@ -17,7 +17,7 @@ class Todo {
         if (description) this.description = description;
         if (dueDate) this.dueDate = dueDate;
         if (priority) this.priority = priority;
-    }
+}
 }
 
 export default Todo;

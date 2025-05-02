@@ -24,7 +24,7 @@ export function initializeUI() {
   renderMainContainer();
   renderTaskHeader();
   renderAddTaskButton();
-  renderTaskItems()
+  renderTaskItems();
 }
 
 function createItemContainer(id) {
@@ -56,62 +56,93 @@ function renderProjectItems() {
       p.title
     );
 
-    const editIcon = createIcon("material-symbols-outlined", "edit_square");
-    const deleteIcon = createIcon("material-symbols-outlined", "delete");
+    const projectEditIcon = createIcon("material-symbols-outlined", "edit_square");
+    const projectDeleteIcon = createIcon("material-symbols-outlined", "delete");
 
-    projectItem.append(editIcon, deleteIcon);
+    projectItem.append(projectEditIcon, projectDeleteIcon);
     projectContainer.append(projectItem);
   });
 }
 
 function renderAppLogo() {
   const leftSidebar = document.querySelector(".left-sidebar");
-  const appLogo = createElement("h1", {id: "title"}, "ToDo App");
-  leftSidebar.append(appLogo)
+  const appLogo = createElement("h1", { id: "title" }, "ToDo App");
+  leftSidebar.append(appLogo);
 }
 
 function renderAddProjectButton() {
   const leftSidebar = document.querySelector(".left-sidebar");
-  const addProjectButton = createElement("button", {id: "add-project-btn"}, "+ Add Project");
-  leftSidebar.append(addProjectButton)
+  const addProjectButton = createElement(
+    "button",
+    { id: "add-project-btn" },
+    "+ Add Project"
+  );
+  leftSidebar.append(addProjectButton);
 }
 
 //Main
 function renderMainContainer() {
   const mainContainer = document.querySelector(".main-container");
 
-  const mainContainerHeader = createElement("div", {id: "main-container-header"});
-  const mainContainerBody = createElement("div", {id: "main-container-body"});
+  const mainContainerHeader = createElement("div", {
+    id: "main-container-header",
+  });
+  const mainContainerBody = createElement("div", { id: "main-container-body" });
   const tasksContainer = createItemContainer("task-container");
 
   mainContainer.append(mainContainerHeader, mainContainerBody);
-  mainContainerBody.append(tasksContainer)
+  mainContainerBody.append(tasksContainer);
 }
 function renderTaskHeader() {
   const mainContainerHeader = document.querySelector("#main-container-header");
-  const projectTitle = createElement("h1", { id: "project-title" }, appState.selectedProject?.title || "Untitled Project");
+  const projectTitle = createElement(
+    "h1",
+    { id: "project-title" },
+    appState.selectedProject?.title || "Untitled Project"
+  );
   mainContainerHeader.append(projectTitle);
 }
 
 function renderAddTaskButton() {
   const mainContainerBody = document.querySelector("#main-container-body");
-  const addTaskButton = createElement("button", { id: "add-task-btn" }, "+ Add Task");
+  const addTaskButton = createElement(
+    "button",
+    { id: "add-task-btn" },
+    "+ Add Task"
+  );
   mainContainerBody.append(addTaskButton);
 }
 
 function renderTaskItems() {
   const taskContainer = document.querySelector("#task-container");
   taskContainer.innerHTML = "";
-  if(appState.selectedProject.todos.length > 0) {
+  if (appState.selectedProject.todos.length > 0) {
     appState.selectedProject.todos.forEach((t) => {
-      const todoItem = createElement("li", {class: "todo-item", "data-id": t.id}, t.title);
-      taskContainer.append(todoItem)
-    })
+      const todoItem = createElement("li", {
+        class: "todo-item",
+        "data-id": t.id,
+      });
+      taskContainer.append(todoItem);
+
+      const todoCheckbox = createElement("input", { type: "checkbox" });
+      const todoTitle = createElement("p", { class: "todo-title"}, t.title);
+      const todoDate = createElement("p", {class: "todo-date"}, `${"Due: " + t.dueDate}` )
+      const todoPriority = createElement("p", {class: "todo-priority"}, t.priority);
+      const todoIconContainer = createElement("div", {class: "icon-container"});
+      const todoEditIcon = createIcon("material-symbols-outlined", "edit_square");
+      const todoDeleteIcon = createIcon("material-symbols-outlined", "delete");
+  
+
+      todoItem.append(todoCheckbox, todoTitle, todoDate, todoPriority, todoIconContainer);
+      todoIconContainer.append(todoEditIcon, todoDeleteIcon);
+
+    });
   } else {
-    const addFirstTaskText = createElement("p",{class: "add-task-text"}, "Click the button below to Add your first task!");
-    taskContainer.append(addFirstTaskText)
+    const addFirstTaskText = createElement(
+      "p",
+      { class: "add-task-text" },
+      "Click the button below to Add your first task!"
+    );
+    taskContainer.append(addFirstTaskText);
   }
 }
-
-
-
