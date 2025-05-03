@@ -36,3 +36,19 @@ export function modalOutsideClickClose(modalSelector) {
       }
     });
   }
+
+  export function modalCloseButtonEvent(modalSelector, buttonSelector) {
+    const dialog = document.querySelector(modalSelector);
+    if (!dialog) {
+      console.error(`Modal with selector "${modalSelector}" not found.`);
+      return;
+    }
+    const cancelButton = document.querySelector(buttonSelector);
+    if (!cancelButton) {
+        console.error(`Button with selector "${buttonSelector}" not found.`);
+        return;
+      }
+      cancelButton.addEventListener("click", () => {
+        dialog.close();
+      });
+  }

@@ -1,5 +1,5 @@
 import { initializeUI } from "./modules/domLogic.js";
-import { attachModalEvent, modalOutsideClickClose  } from "./events/modalEvents.js";
+import { attachModalEvent, modalOutsideClickClose, modalCloseButtonEvent  } from "./events/modalEvents.js";
 
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -11,7 +11,10 @@ window.addEventListener("DOMContentLoaded", () => {
     // Close modals when clicked outside of the modal
     modalOutsideClickClose("#add-project-modal");
     modalOutsideClickClose("#add-task-modal");
-
-    
+    // Close modals when clicked when cancel button of modal clicked
+    modalCloseButtonEvent("#add-project-modal", ".add-project-form-cancel-btn");
+    modalCloseButtonEvent("#add-project-modal", ".add-project-form-cancel-btn");
+    modalCloseButtonEvent("#add-task-modal", ".task-form-cancel-btn");
+    modalCloseButtonEvent("#edit-task-modal", ".task-form-cancel-btn");
   });
   
