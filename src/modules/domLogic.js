@@ -25,6 +25,10 @@ export function initializeUI() {
   renderTaskHeader();
   renderAddTaskButton();
   renderTaskItems();
+  renderAddProjectModal()
+  renderEditProjectModal()
+  renderAddTaskModal()
+  renderEditTaskModal()
 }
 
 function createItemContainer(id) {
@@ -126,7 +130,9 @@ function renderTaskItems() {
       taskContainer.append(todoItem);
 
       const todoCheckbox = createElement("input", { type: "checkbox" });
+      const todoTDContainer = createElement("div", {class: "todo-TD-container"});
       const todoTitle = createElement("p", { class: "todo-title"}, t.title);
+      const todoDescription = createElement("p", {class: "title-description"}, t.description);
       const todoDate = createElement("p", {class: "todo-date"}, `${"Due: " + t.dueDate}` )
       const todoPriority = createElement("p", {class: "todo-priority"}, t.priority);
       const todoIconContainer = createElement("div", {class: "icon-container"});
@@ -134,7 +140,8 @@ function renderTaskItems() {
       const todoDeleteIcon = createIcon("material-symbols-outlined", "delete");
   
 
-      todoItem.append(todoCheckbox, todoTitle, todoDate, todoPriority, todoIconContainer);
+      todoItem.append(todoCheckbox, todoTDContainer, todoDate, todoPriority, todoIconContainer);
+      todoTDContainer.append(todoTitle, todoDescription);
       todoIconContainer.append(todoEditIcon, todoDeleteIcon);
 
     });
@@ -212,3 +219,176 @@ function renderEditProjectModal() {
 }
 
 //Tasks
+function renderAddTaskModal() {
+  const addTaskModal = createDialogModal("add-task-modal");
+  const app = document.querySelector("#app");
+  app.append(addTaskModal);
+
+  const addTaskForm = createElement("form", { class: "add-task-form" });
+  addTaskModal.append(addTaskForm);
+
+  const titleLabel = createElement(
+    "label",
+    { for: "task-title-input", class: "task-form-label" },
+    "Task Title:"
+  );
+  const titleInput = createElement("input", {
+    type: "text",
+    id: "task-title-input",
+    name: "task-title",
+    class: "task-form-input",
+    "aria-label": "Task Title",
+  });
+
+  const descriptionLabel = createElement(
+    "label",
+    { for: "task-description-input", class: "task-form-label" },
+    "Task Description:"
+  );
+  const descriptionInput = createElement("textarea", {
+    id: "task-description-input",
+    name: "task-description",
+    class: "task-form-input",
+    "aria-label": "Task Description",
+  });
+
+  const dueDateLabel = createElement(
+    "label",
+    { for: "task-due-date-input", class: "task-form-label" },
+    "Due Date:"
+  );
+  const dueDateInput = createElement("input", {
+    type: "date",
+    id: "task-due-date-input",
+    name: "task-due-date",
+    class: "task-form-input",
+    "aria-label": "Task Due Date",
+  });
+
+  const priorityLabel = createElement(
+    "label",
+    { for: "task-priority-select", class: "task-form-label" },
+    "Priority:"
+  );
+  const prioritySelect = createElement("select", {
+    id: "task-priority-select",
+    name: "task-priority",
+    class: "task-form-input",
+    "aria-label": "Task Priority",
+  });
+  const lowOption = createElement("option", { value: "low" }, "Low");
+  const mediumOption = createElement("option", { value: "medium" }, "Medium");
+  const highOption = createElement("option", { value: "high" }, "High");
+  prioritySelect.append(lowOption, mediumOption, highOption);
+
+  const submitButton = createElement(
+    "button",
+    { type: "submit", class: "task-form-submit-btn" },
+    "Submit"
+  );
+  const cancelButton = createElement(
+    "button",
+    { type: "button", class: "task-form-cancel-btn", formmethod: "dialog" },
+    "Cancel"
+  );
+
+  addTaskForm.append(
+    titleLabel,
+    titleInput,
+    descriptionLabel,
+    descriptionInput,
+    dueDateLabel,
+    dueDateInput,
+    priorityLabel,
+    prioritySelect,
+    submitButton,
+    cancelButton
+  );
+}
+
+function renderEditTaskModal() {
+  const editTaskModal = createDialogModal("edit-task-modal");
+  const app = document.querySelector("#app");
+  app.append(editTaskModal);
+
+  const editTaskForm = createElement("form", { class: "edit-task-form" });
+  editTaskModal.append(editTaskForm);
+
+  const titleLabel = createElement(
+    "label",
+    { for: "edit-task-title-input", class: "task-form-label" },
+    "Task Title:"
+  );
+  const titleInput = createElement("input", {
+    type: "text",
+    id: "edit-task-title-input",
+    name: "edit-task-title",
+    class: "task-form-input",
+    "aria-label": "Task Title",
+  });
+
+  const descriptionLabel = createElement(
+    "label",
+    { for: "edit-task-description-input", class: "task-form-label" },
+    "Task Description:"
+  );
+  const descriptionInput = createElement("textarea", {
+    id: "edit-task-description-input",
+    name: "edit-task-description",
+    class: "task-form-input",
+    "aria-label": "Task Description",
+  });
+
+  const dueDateLabel = createElement(
+    "label",
+    { for: "edit-task-due-date-input", class: "task-form-label" },
+    "Due Date:"
+  );
+  const dueDateInput = createElement("input", {
+    type: "date",
+    id: "edit-task-due-date-input",
+    name: "edit-task-due-date",
+    class: "task-form-input",
+    "aria-label": "Task Due Date",
+  });
+
+  const priorityLabel = createElement(
+    "label",
+    { for: "edit-task-priority-select", class: "task-form-label" },
+    "Priority:"
+  );
+  const prioritySelect = createElement("select", {
+    id: "edit-task-priority-select",
+    name: "edit-task-priority",
+    class: "task-form-input",
+    "aria-label": "Task Priority",
+  });
+  const lowOption = createElement("option", { value: "low" }, "Low");
+  const mediumOption = createElement("option", { value: "medium" }, "Medium");
+  const highOption = createElement("option", { value: "high" }, "High");
+  prioritySelect.append(lowOption, mediumOption, highOption);
+
+  const submitButton = createElement(
+    "button",
+    { type: "submit", class: "task-form-submit-btn" },
+    "Submit"
+  );
+  const cancelButton = createElement(
+    "button",
+    { type: "button", class: "task-form-cancel-btn", formmethod: "dialog" },
+    "Cancel"
+  );
+
+  editTaskForm.append(
+    titleLabel,
+    titleInput,
+    descriptionLabel,
+    descriptionInput,
+    dueDateLabel,
+    dueDateInput,
+    priorityLabel,
+    prioritySelect,
+    submitButton,
+    cancelButton
+  );
+}
