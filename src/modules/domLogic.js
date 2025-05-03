@@ -25,6 +25,7 @@ export function initializeUI() {
   renderTaskHeader();
   renderAddTaskButton();
   renderTaskItems();
+  renderProjectModal() 
 }
 
 function createItemContainer(id) {
@@ -151,20 +152,34 @@ function renderTaskItems() {
 //Modals
 
 function createDialogModal(id){
-    return createElement("dialog,", {class: "modal", id: id});
+    return createElement("dialog", {class: "modal", id: id});
 }
 
 function renderProjectModal() {
-  createDialogModal("project-modal");
-  const projectModal = document.querySelector("#project-modal");
+  const projectModal = createDialogModal("project-modal");
+  const app = document.querySelector("#app");
+  app.append(projectModal);
+
   const projectForm = createElement("form", { class: "project-form" });
   projectModal.append(projectForm);
 
   const projectFormLabel = createElement(
-    "label",
-    { class: "project-form-label" },
-    "Please enter a name for your project: "
+      "label",
+      { class: "project-form-label", htmlFor: "project-name-input" },
+      "Please enter a name for your project: "
   );
-  const projectFormInput = createElement("input", { class: "project-form-input" });
-  projectForm.append(projectFormLabel, projectFormInput);
+  const projectFormInput = createElement("input", { class: "project-form-input", type: "text", id: "project-name-input", name: "project-name" });
+
+  const projectFormSubmitButton = createElement(
+    "button",
+    { class: "project-form-submit-btn", type: "submit" },
+    "Submit"
+  );
+  const projectFormCancelButton = createElement(
+    "button",
+    { class: "project-form-cancel-btn", type: "button", formmethod: "dialog" },
+    "Cancel"
+  );
+  projectForm.append(projectFormLabel, projectFormInput, projectFormSubmitButton, projectFormCancelButton);
 }
+
