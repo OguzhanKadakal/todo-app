@@ -136,7 +136,7 @@ function renderTaskItems() {
       const todoDate = createElement(
         "p",
         { class: "todo-date" },
-        `Due: ${t.dueDate ? format(new Date(t.dueDate), "MMM dd, yyyy") : "No due date"}`
+        `Due: ${t.dueDate ? format(new Date(t.dueDate), "dd MMM, yyyy") : "No due date"}`
       );
       const todoPriority = createElement("p", {class: "todo-priority"}, t.priority);
       const todoIconContainer = createElement("div", {class: "icon-container"});
