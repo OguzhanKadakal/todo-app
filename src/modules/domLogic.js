@@ -25,7 +25,6 @@ export function initializeUI() {
   renderTaskHeader();
   renderAddTaskButton();
   renderTaskItems();
-  renderProjectModal() 
 }
 
 function createItemContainer(id) {
@@ -156,32 +155,60 @@ function createDialogModal(id){
 }
 
 // Projects
-function renderProjectModal() {
-  const projectModal = createDialogModal("project-modal");
+function renderAddProjectModal() {
+  const addProjectModal = createDialogModal("add-project-modal");
   const app = document.querySelector("#app");
-  app.append(projectModal);
+  app.append(addProjectModal);
 
-  const projectForm = createElement("form", { class: "project-form" });
-  projectModal.append(projectForm);
+  const addProjectForm = createElement("form", { class: "add-project-form" });
+  addProjectModal.append(addProjectForm);
 
-  const projectFormLabel = createElement(
+  const addProjectFormLabel = createElement(
       "label",
-      { class: "project-form-label", htmlFor: "project-name-input" },
+      { class: "add-project-form-label", htmlFor: "add-project-name-input" },
       "Please enter a name for your project: "
   );
-  const projectFormInput = createElement("input", { class: "project-form-input", type: "text", id: "project-name-input", name: "project-name" });
+  const addProjectFormInput = createElement("input", { class: "add-project-form-input", type: "text", id: "add-project-name-input", name: "project-name" });
 
-  const projectFormSubmitButton = createElement(
+  const addProjectFormSubmitButton = createElement(
     "button",
-    { class: "project-form-submit-btn", type: "submit" },
+    { class: "add-project-form-submit-btn", type: "submit" },
     "Submit"
   );
-  const projectFormCancelButton = createElement(
+  const addProjectFormCancelButton = createElement(
     "button",
-    { class: "project-form-cancel-btn", type: "button", formmethod: "dialog" },
+    { class: "add-project-form-cancel-btn", type: "button", formmethod: "dialog" },
     "Cancel"
   );
-  projectForm.append(projectFormLabel, projectFormInput, projectFormSubmitButton, projectFormCancelButton);
+  addProjectForm.append(addProjectFormLabel, addProjectFormInput, addProjectFormSubmitButton, addProjectFormCancelButton);
+}
+
+function renderEditProjectModal() {
+  const editProjectModal = createDialogModal("edit-project-modal");
+  const app = document.querySelector("#app");
+  app.append(editProjectModal);
+
+  const editProjectForm = createElement("form", { class: "edit-project-form" });
+  editProjectModal.append(editProjectForm);
+
+  const editProjectFormLabel = createElement(
+      "label",
+      { class: "edit-project-form-label", htmlFor: "edit-project-name-input" },
+      "Please enter a new name for the project: "
+  );
+  const editProjectFormInput = createElement("input", { class: "edit-project-form-input", type: "text", id: "edit-project-name-input", name: "edit-project-name" });
+
+  const editProjectFormSubmitButton = createElement(
+    "button",
+    { class: "edit-project-form-submit-btn", type: "submit" },
+    "Submit"
+  );
+  const editProjectFormCancelButton = createElement(
+    "button",
+    { class: "edit-project-form-cancel-btn", type: "button", formmethod: "dialog" },
+    "Cancel"
+  );
+  editProjectForm.append(editProjectFormLabel, editProjectFormInput, editProjectFormSubmitButton, editProjectFormCancelButton);
 }
 
 //Tasks
