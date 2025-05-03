@@ -155,6 +155,7 @@ function createDialogModal(id){
     return createElement("dialog", {class: "modal", id: id});
 }
 
+// Projects
 function renderProjectModal() {
   const projectModal = createDialogModal("project-modal");
   const app = document.querySelector("#app");
@@ -183,3 +184,4 @@ function renderProjectModal() {
   projectForm.append(projectFormLabel, projectFormInput, projectFormSubmitButton, projectFormCancelButton);
 }
 
+//Tasks
