@@ -150,3 +150,21 @@ function renderTaskItems() {
 
 //Modals
 
+function createDialogModal(id){
+    return createElement("dialog,", {class: "modal", id: id});
+}
+
+function renderProjectModal() {
+  createDialogModal("project-modal");
+  const projectModal = document.querySelector("#project-modal");
+  const projectForm = createElement("form", { class: "project-form" });
+  projectModal.append(projectForm);
+
+  const projectFormLabel = createElement(
+    "label",
+    { class: "project-form-label" },
+    "Please enter a name for your project: "
+  );
+  const projectFormInput = createElement("input", { class: "project-form-input" });
+  projectForm.append(projectFormLabel, projectFormInput);
+}
