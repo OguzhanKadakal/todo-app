@@ -1,7 +1,7 @@
 import Project from "./project";
 import Todo from "./todo.js";
 import appState from "./appState.js";
-import { id } from "date-fns/locale";
+import { format } from "date-fns";
 
 export function createElement(tag, attributes = {}, textContent = "") {
   const element = document.createElement(tag);
@@ -133,7 +133,11 @@ function renderTaskItems() {
       const todoTDContainer = createElement("div", {class: "todo-TD-container"});
       const todoTitle = createElement("p", { class: "todo-title"}, t.title);
       const todoDescription = createElement("p", {class: "title-description"}, t.description);
-      const todoDate = createElement("p", {class: "todo-date"}, `${"Due: " + t.dueDate}` )
+      const todoDate = createElement(
+        "p",
+        { class: "todo-date" },
+        `Due: ${t.dueDate ? format(new Date(t.dueDate), "MMM dd, yyyy") : "No due date"}`
+      );
       const todoPriority = createElement("p", {class: "todo-priority"}, t.priority);
       const todoIconContainer = createElement("div", {class: "icon-container"});
       const todoEditIcon = createIcon("material-symbols-outlined", "edit_square");
