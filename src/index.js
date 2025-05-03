@@ -1,5 +1,5 @@
 import { initializeUI } from "./modules/domLogic.js";
-import { attachModalEvent } from "./events/modalEvents.js";
+import { attachModalEvent, modalOutsideClickClose  } from "./events/modalEvents.js";
 
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -8,5 +8,10 @@ window.addEventListener("DOMContentLoaded", () => {
     // Attach modal open events for buttons
     attachModalEvent("#add-project-btn", "#add-project-modal");
     attachModalEvent("#add-task-btn", "#add-task-modal");
+    // Close modals when clicked outside of the modal
+    modalOutsideClickClose("#add-project-modal");
+    modalOutsideClickClose("#add-task-modal");
+
+    
   });
   
