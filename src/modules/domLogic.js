@@ -63,6 +63,7 @@ export function renderProjectItems() {
 
     const projectEditIcon = createIcon("material-symbols-outlined project-edit-icon", "edit_square");
     const projectDeleteIcon = createIcon("material-symbols-outlined project-delete-icon", "delete");
+    projectEditIcon.setAttribute("data-modal-target", "#edit-project-modal");
 
     projectItem.append(projectEditIcon, projectDeleteIcon);
     projectContainer.append(projectItem);
@@ -79,7 +80,7 @@ function renderAddProjectButton() {
   const leftSidebar = document.querySelector(".left-sidebar");
   const addProjectButton = createElement(
     "button",
-    { id: "add-project-btn" },
+    { id: "add-project-btn", "data-modal-target": "#add-project-modal" },
     "+ Add Project"
   );
   leftSidebar.append(addProjectButton);
@@ -112,7 +113,7 @@ function renderAddTaskButton() {
   const mainContainerBody = document.querySelector(".main-container-body");
   const addTaskButton = createElement(
     "button",
-    { id: "add-task-btn" },
+    { id: "add-task-btn", "data-modal-target": "#add-task-modal" },
     "+ Add Task"
   );
   mainContainerBody.append(addTaskButton);
@@ -125,24 +126,25 @@ export function renderTaskItems() {
   if (todos.length > 0) {
     todos.forEach((t) => {
       const todoItem = createElement("li", {
-        class: "todo-item",
+        class: "task-item",
         "data-id": t.id,
       });
       taskContainer.append(todoItem);
 
       const todoCheckbox = createElement("input", { type: "checkbox" });
-      const todoTDContainer = createElement("div", {class: "todo-TD-container"});
-      const todoTitle = createElement("p", { class: "todo-title"}, t.title);
+      const todoTDContainer = createElement("div", {class: "task-TD-container"});
+      const todoTitle = createElement("p", { class: "task-title"}, t.title);
       const todoDescription = createElement("p", {class: "title-description"}, t.description);
       const todoDate = createElement(
         "p",
-        { class: "todo-date" },
+        { class: "task-date" },
         `Due: ${t.dueDate ? format(new Date(t.dueDate), "dd MMM, yyyy") : "No due date"}`
       );
-      const todoPriority = createElement("p", {class: "todo-priority"}, t.priority);
+      const todoPriority = createElement("p", {class: "task-priority"}, t.priority);
       const todoIconContainer = createElement("div", {class: "icon-container"});
-      const todoEditIcon = createIcon("material-symbols-outlined", "edit_square");
-      const todoDeleteIcon = createIcon("material-symbols-outlined", "delete");
+      const todoEditIcon = createIcon("material-symbols-outlined task-edit-icon", "edit_square");
+      const todoDeleteIcon = createIcon("material-symbols-outlined task-delete-icon", "delete");
+      todoEditIcon.setAttribute("data-modal-target", "#edit-task-modal");
   
 
       todoItem.append(todoCheckbox, todoTDContainer, todoDate, todoPriority, todoIconContainer);
@@ -189,7 +191,7 @@ function renderAddProjectModal() {
   );
   const addProjectFormCancelButton = createElement(
     "button",
-    { class: "add-project-form-cancel-btn", type: "button", formmethod: "dialog" },
+    { class: "cancel-btn", type: "button", formmethod: "dialog" },
     "Cancel"
   );
   addProjectForm.append(addProjectFormLabel, addProjectFormInput, addProjectFormSubmitButton, addProjectFormCancelButton);
@@ -217,7 +219,7 @@ function renderEditProjectModal() {
   );
   const editProjectFormCancelButton = createElement(
     "button",
-    { class: "edit-project-form-cancel-btn", type: "button", formmethod: "dialog" },
+    { class: "cancel-btn", type: "button", formmethod: "dialog" },
     "Cancel"
   );
   editProjectForm.append(editProjectFormLabel, editProjectFormInput, editProjectFormSubmitButton, editProjectFormCancelButton);
@@ -293,7 +295,7 @@ function renderAddTaskModal() {
   );
   const cancelButton = createElement(
     "button",
-    { type: "button", class: "task-form-cancel-btn", formmethod: "dialog" },
+    { type: "button", class: "cancel-btn", formmethod: "dialog" },
     "Cancel"
   );
 
@@ -380,7 +382,7 @@ function renderEditTaskModal() {
   );
   const cancelButton = createElement(
     "button",
-    { type: "button", class: "task-form-cancel-btn", formmethod: "dialog" },
+    { type: "button", class: "cancel-btn", formmethod: "dialog" },
     "Cancel"
   );
 

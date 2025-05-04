@@ -1,54 +1,42 @@
-export function attachModalEvent(buttonSelector, modalSelector) {
-  const button = document.querySelector(buttonSelector);
-  if (!button) {
-    console.error(`Button with selector "${buttonSelector}" not found.`);
-    return;
-  }
+//Open Model
+export function modalOpenButtonEvent(e) {
+  const opener = e.target.closest("[data-modal-target]"); 
+  if (!opener) return;
 
-  button.addEventListener("click", () => {
-    const modal = document.querySelector(modalSelector);
-    if (!modal) {
-      console.error(`Modal with selector "${modalSelector}" not found.`);
-      return;
-    }
+  const modalSelector = opener.dataset.modalTarget;
+  const modal = document.querySelector(modalSelector);
+
+  if (modal && typeof modal.showModal === "function") {
     modal.showModal();
-    const firstInput = modal.querySelector("input, textarea, select");
-    if (firstInput) firstInput.focus();
+  }
+}
+
+//Close model
+export function enableOutsideClickToCloseModals() {
+  const modals = document.querySelectorAll("dialog.modal");
+
+  modals.forEach(modal => {
+    modal.addEventListener("click", (e) => {
+      const rect = modal.getBoundingClientRect();
+      const clickedOutside =
+        e.clientX < rect.left ||
+        e.clientX > rect.right ||
+        e.clientY < rect.top ||
+        e.clientY > rect.bottom;
+
+      if (clickedOutside) {
+        modal.close();
+      }
+    });
   });
 }
 
-export function modalOutsideClickClose(modalSelector) {
-    const dialog = document.querySelector(modalSelector);
-    if (!dialog) {
-      console.error(`Modal with selector "${modalSelector}" not found.`);
-      return;
+export function modalCloseButtonEvent(e) {
+  const cancelButton = e.target.closest(".cancel-btn");
+  if (cancelButton) {
+    const modal = cancelButton.closest("dialog.modal");
+    if (modal) {
+      modal.close();
     }
-  
-    dialog.addEventListener("click", (e) => {
-      const dialogDimensions = dialog.getBoundingClientRect();
-      if (
-        e.clientX < dialogDimensions.left ||
-        e.clientX > dialogDimensions.right ||
-        e.clientY < dialogDimensions.top ||
-        e.clientY > dialogDimensions.bottom
-      ) {
-        dialog.close();
-      }
-    });
   }
-
-  export function modalCloseButtonEvent(modalSelector, buttonSelector) {
-    const dialog = document.querySelector(modalSelector);
-    if (!dialog) {
-      console.error(`Modal with selector "${modalSelector}" not found.`);
-      return;
-    }
-    const cancelButton = document.querySelector(buttonSelector);
-    if (!cancelButton) {
-        console.error(`Button with selector "${buttonSelector}" not found.`);
-        return;
-      }
-      cancelButton.addEventListener("click", () => {
-        dialog.close();
-      });
-  }
+}
