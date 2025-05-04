@@ -40,10 +40,14 @@ function handleEditProjectFormSubmit(event) {
 // Attach the event listener for the Add Project form
 export function initializeProjectEvents() {
   const addProjectForm = document.querySelector("#add-project-form");
-  const editProjectForm = document.querySelector("#add-project-form");
+  const editProjectForm = document.querySelector("#edit-project-form");
   if (addProjectForm) {
     addProjectForm.addEventListener("submit", handleAddProjectFormSubmit);
-  } else {
+  } 
+  if (editProjectForm) {
+    editProjectForm.addEventListener("submit", handleEditProjectFormSubmit);
+  } 
+  else {
     console.error("Add Project Form not found in the DOM.");
   }
 }
