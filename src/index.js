@@ -1,6 +1,7 @@
 import { initializeUI } from "./modules/domLogic.js";
 import { attachModalEvent, modalOutsideClickClose, modalCloseButtonEvent  } from "./events/modalEvents.js";
 import { initializeProjectEvents } from "./events/projectEvents.js"
+import { initializeTaskEvents } from "./events/taskEvents.js"
 
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -20,5 +21,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Initialize project-related events
     initializeProjectEvents()
+
+    // Initialize task-related events
+    initializeTaskEvents()
   });
   

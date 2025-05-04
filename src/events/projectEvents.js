@@ -18,6 +18,13 @@ function handleAddProjectFormSubmit(event) {
   appState.addProject(newProject);
   renderProjectItems();
   projectTitleInput.value = "";
+
+  const modal = document.querySelector("#add-project-modal");
+  if (modal) {
+    modal.close();
+  } else {
+    console.error("Add Project Modal not found in the DOM.");
+  }
 }
 
 

@@ -118,7 +118,7 @@ function renderAddTaskButton() {
   mainContainerBody.append(addTaskButton);
 }
 
-function renderTaskItems() {
+export function renderTaskItems() {
   const taskContainer = document.querySelector("#task-container");
   taskContainer.innerHTML = "";
   const todos = appState.selectedProject?.todos || [];
@@ -229,7 +229,7 @@ function renderAddTaskModal() {
   const app = document.querySelector("#app");
   app.append(addTaskModal);
 
-  const addTaskForm = createElement("form", { class: "add-task-form" });
+  const addTaskForm = createElement("form", { id: "add-task-form" });
   addTaskModal.append(addTaskForm);
 
   const titleLabel = createElement(
