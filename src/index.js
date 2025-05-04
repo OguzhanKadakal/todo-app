@@ -17,7 +17,7 @@ window.addEventListener("DOMContentLoaded", () => {
     modalCloseButtonEvent("#add-project-modal", ".add-project-form-cancel-btn");
     modalCloseButtonEvent("#add-task-modal", ".task-form-cancel-btn");
     modalCloseButtonEvent("#edit-task-modal", ".task-form-cancel-btn");
-    
+
     // Initialize project-related events
     initializeProjectEvents()
   });

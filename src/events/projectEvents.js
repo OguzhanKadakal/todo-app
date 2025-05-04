@@ -20,22 +20,6 @@ function handleAddProjectFormSubmit(event) {
   projectTitleInput.value = "";
 }
 
-function handleEditProjectFormSubmit(event) {
-  event.preventDefault();
-
-  const form = event.target;
-  const editProjectTitleInput = form.querySelector("#edit-project-name-input");
-  const newProjectTitle = editProjectTitleInput.value.trim();
-
-  if (!newProjectTitle) {
-    alert("Project title cannot be empty!");
-    return;
-  }
-
-  appState.updateTitle(newProject);
-  renderProjectItems();
-  editProjectTitleInput.value = "";
-}
 
 // Attach the event listener for the Add Project form
 export function initializeProjectEvents() {
@@ -43,9 +27,6 @@ export function initializeProjectEvents() {
   const editProjectForm = document.querySelector("#edit-project-form");
   if (addProjectForm) {
     addProjectForm.addEventListener("submit", handleAddProjectFormSubmit);
-  } 
-  if (editProjectForm) {
-    editProjectForm.addEventListener("submit", handleEditProjectFormSubmit);
   } 
   else {
     console.error("Add Project Form not found in the DOM.");

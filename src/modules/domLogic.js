@@ -61,8 +61,8 @@ export function renderProjectItems() {
       p.title
     );
 
-    const projectEditIcon = createIcon("material-symbols-outlined", "edit_square");
-    const projectDeleteIcon = createIcon("material-symbols-outlined", "delete");
+    const projectEditIcon = createIcon("material-symbols-outlined project-edit-icon", "edit_square");
+    const projectDeleteIcon = createIcon("material-symbols-outlined project-delete-icon", "delete");
 
     projectItem.append(projectEditIcon, projectDeleteIcon);
     projectContainer.append(projectItem);
