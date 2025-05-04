@@ -22,7 +22,11 @@ function handleAddTaskFormSubmit(event) {
     const newTodo = new Todo(projectTitle, taskDescription, taskDueDate, taskPriority);
     appState.selectedProject.addTodo(newTodo);
     renderTaskItems();
-
+    taskTitleInput.value = "";
+    taskDescriptionInput.value = "";
+    taskDueDateInput.value = "";
+    taskPrioritySelect.selectedIndex = 0;
+    
     const modal = document.querySelector("#add-task-modal");
     if (modal) {
       modal.close();
