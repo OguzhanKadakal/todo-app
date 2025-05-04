@@ -2,6 +2,7 @@ import Project from "./project";
 import Todo from "./todo.js";
 import appState from "./appState.js";
 import { format } from "date-fns";
+import { id } from "date-fns/locale";
 
 export function createElement(tag, attributes = {}, textContent = "") {
   const element = document.createElement(tag);
@@ -46,7 +47,7 @@ function renderProjectsContainer() {
   leftSidebar.append(projectContainer);
 }
 
-function renderProjectItems() {
+export function renderProjectItems() {
   const projectContainer = document.querySelector("#project-container");
   projectContainer.innerHTML = "";
 
@@ -171,7 +172,7 @@ function renderAddProjectModal() {
   const app = document.querySelector("#app");
   app.append(addProjectModal);
 
-  const addProjectForm = createElement("form", { class: "add-project-form" });
+  const addProjectForm = createElement("form", { id: "add-project-form" });
   addProjectModal.append(addProjectForm);
 
   const addProjectFormLabel = createElement(
@@ -199,7 +200,7 @@ function renderEditProjectModal() {
   const app = document.querySelector("#app");
   app.append(editProjectModal);
 
-  const editProjectForm = createElement("form", { class: "edit-project-form" });
+  const editProjectForm = createElement("form", { id: "edit-project-form" });
   editProjectModal.append(editProjectForm);
 
   const editProjectFormLabel = createElement(

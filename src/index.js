@@ -1,5 +1,6 @@
 import { initializeUI } from "./modules/domLogic.js";
 import { attachModalEvent, modalOutsideClickClose, modalCloseButtonEvent  } from "./events/modalEvents.js";
+import { initializeProjectEvents } from "./events/projectEvents.js"
 
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -16,5 +17,8 @@ window.addEventListener("DOMContentLoaded", () => {
     modalCloseButtonEvent("#add-project-modal", ".add-project-form-cancel-btn");
     modalCloseButtonEvent("#add-task-modal", ".task-form-cancel-btn");
     modalCloseButtonEvent("#edit-task-modal", ".task-form-cancel-btn");
+    
+    // Initialize project-related events
+    initializeProjectEvents()
   });
   
