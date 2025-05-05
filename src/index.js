@@ -1,6 +1,6 @@
 import { initializeUI } from "./modules/domLogic.js";
 import { modalOpenButtonEvent, enableOutsideClickToCloseModals, modalCloseButtonEvent  } from "./events/modalEvents.js";
-import { initializeProjectEvents } from "./events/projectEvents.js"
+import { initializeProjectAddEvent, initializeProjectEditEvent, deleteProjectEvent } from "./events/projectEvents.js"
 import { initializeTaskEvents } from "./events/taskEvents.js"
 import { addGlobalEventListener } from "./events/eventDelegation.js";
 
@@ -18,8 +18,9 @@ window.addEventListener("DOMContentLoaded", () => {
     addGlobalEventListener("click", ".modal .cancel-btn", modalCloseButtonEvent);
     
     // Initialize project-related events
-    initializeProjectEvents()
-
+    initializeProjectAddEvent()
+    initializeProjectEditEvent()
+    deleteProjectEvent()
     // Initialize task-related events
     initializeTaskEvents()
   });

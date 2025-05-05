@@ -1,8 +1,5 @@
-import Project from "./project";
-import Todo from "./todo.js";
 import appState from "./appState.js";
 import { format } from "date-fns";
-import { id } from "date-fns/locale";
 
 export function createElement(tag, attributes = {}, textContent = "") {
   const element = document.createElement(tag);
@@ -30,6 +27,8 @@ export function initializeUI() {
   renderEditProjectModal()
   renderAddTaskModal()
   renderEditTaskModal()
+  renderProjectDeleteModal()
+  renderTaskDeleteModal()
 }
 
 function createItemContainer(id) {
@@ -99,12 +98,13 @@ function renderMainContainer() {
   mainContainer.append(mainContainerHeader, mainContainerBody);
   mainContainerBody.append(tasksContainer);
 }
-function renderTaskHeader() {
+export function renderTaskHeader() {
   const mainContainerHeader = document.querySelector(".main-container-header");
+  mainContainerHeader.innerHTML= "";
   const projectTitle = createElement(
     "h1",
     { id: "project-title" },
-    appState.selectedProject?.title || "Untitled Project"
+    appState.selectedProject?.title || "Create a New Project to Start!"
   );
   mainContainerHeader.append(projectTitle);
 }
@@ -398,4 +398,54 @@ function renderEditTaskModal() {
     submitButton,
     cancelButton
   );
+}
+
+export function renderProjectDeleteModal() {
+  const modal = createDialogModal("project-delete-modal");
+  const app = document.querySelector("#app");
+  const message = createElement(
+    "p",
+    { class: "delete-modal-message" },
+    "Are you sure you want to delete this project?"
+  );
+
+  const confirmButton = createElement(
+    "button",
+    { class: "delete-modal-confirm-btn", type: "button" },
+    "Yes"
+  );
+
+  const cancelButton = createElement(
+    "button",
+    { class: "cancel-btn", type: "button", formmethod: "dialog" },
+    "No"
+  );
+
+  modal.append(message, confirmButton, cancelButton);
+  app.append(modal);
+}
+
+export function renderTaskDeleteModal() {
+  const modal = createDialogModal("task-delete-modal");
+  const app = document.querySelector("#app");
+  const message = createElement(
+    "p",
+    { class: "delete-modal-message" },
+    "Are you sure you want to delete this task?"
+  );
+
+  const confirmButton = createElement(
+    "button",
+    { class: "delete-modal-confirm-btn", type: "button" },
+    "Yes"
+  );
+
+  const cancelButton = createElement(
+    "button",
+    { class: "cancel-btn", type: "button", formmethod: "dialog" },
+    "No"
+  );
+
+  modal.append(message, confirmButton, cancelButton);
+  app.append(modal);
 }

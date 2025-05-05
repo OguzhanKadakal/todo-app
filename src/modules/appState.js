@@ -10,6 +10,10 @@ class AppState {
         this.projects.push(project);
     }
 
+    getProjectById(id) {
+        return this.projects.find((project) => project.id === id);
+    }
+
     removeProject(project) {
         this.projects = this.projects.filter(p => p.id !== project.id);
         if(project === this.selectedProject) {
