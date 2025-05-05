@@ -129,6 +129,7 @@ export function renderTaskItems() {
         class: "task-item",
         "data-id": t.id,
       });
+
       taskContainer.append(todoItem);
 
       const todoCheckbox = createElement("input", { type: "checkbox" });
@@ -318,7 +319,7 @@ function renderEditTaskModal() {
   const app = document.querySelector("#app");
   app.append(editTaskModal);
 
-  const editTaskForm = createElement("form", { class: "edit-task-form" });
+  const editTaskForm = createElement("form", { id: "edit-task-form" });
   editTaskModal.append(editTaskForm);
 
   const titleLabel = createElement(
