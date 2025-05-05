@@ -28,7 +28,7 @@ class AppState {
     }
 
     initializeApp() {
-        const defaultProject = new Project("Default");
+        const defaultProject = new Project("My First Project");
         this.projects.push(defaultProject);
         this.selectedProject = defaultProject;
     }

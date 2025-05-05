@@ -11,6 +11,10 @@ class Project {
         }
     }
 
+    getTodoById(id) {
+        return this.todos.find(todo => todo.id === id);
+    }
+
     addTodo(todo) {
         this.todos.push(todo);
     }
