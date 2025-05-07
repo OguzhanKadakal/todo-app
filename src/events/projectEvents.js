@@ -1,6 +1,6 @@
 import appState from "../modules/appState";
 import Project from "../modules/project";
-import { renderProjectItems, renderTaskHeader } from "../modules/domLogic";
+import { renderProjectItems, renderTaskHeader, renderTaskItems } from "../modules/domLogic";
 import { addGlobalEventListener } from "./eventDelegation.js";
 
 //Add
@@ -159,6 +159,7 @@ export function deleteProjectEvent() {
       appState.removeProject(projectToDelete);
       renderProjectItems();
       renderTaskHeader();
+      renderTaskItems();
       deleteProjectForm.close();
     } else {
       console.error("Project to delete not found.");
