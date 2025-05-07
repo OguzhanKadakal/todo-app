@@ -163,7 +163,7 @@ export function deleteProjectEvent() {
       renderProjectItems();
       renderTaskHeader();
       renderTaskItems();
-      renderAddTaskButton()
+      renderAddTaskButton();
       deleteProjectForm.close();
       console.log("Number of Projects:", appState.projects.length);
       console.log("Selected Project:", appState.selectedProject);
