@@ -169,7 +169,6 @@ export function initializeTaskEditEvent() {
 //Delete
 export function deleteTaskEvent() {
     const deleteTaskModal = document.querySelector("#task-delete-modal");
-    console.log("Delete Task Modal:", deleteTaskModal);
   
     document.addEventListener("click", (event) => {
       if (event.target.matches(".task-delete-icon")) {
@@ -185,13 +184,11 @@ export function deleteTaskEvent() {
           return;
         }
   
-        console.log("Task ID to delete:", taskId);
         deleteTaskModal.dataset.taskId = taskId;
         deleteTaskModal.showModal();
       }
   
       if (event.target.matches(".delete-modal-confirm-btn")) {
-        console.log("Confirm button clicked");
         const taskId = deleteTaskModal.dataset.taskId;
         const taskToDelete = appState.selectedProject.getTodoById(taskId);
         if (taskToDelete) {
