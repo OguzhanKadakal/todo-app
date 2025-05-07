@@ -1,5 +1,6 @@
 import appState from "./appState.js";
 import { format } from "date-fns";
+import Project from "./project.js";
 
 export function createElement(tag, attributes = {}, textContent = "") {
   const element = document.createElement(tag);
@@ -109,14 +110,25 @@ export function renderTaskHeader() {
   mainContainerHeader.append(projectTitle);
 }
 
-function renderAddTaskButton() {
+export function renderAddTaskButton() {
   const mainContainerBody = document.querySelector(".main-container-body");
-  const addTaskButton = createElement(
-    "button",
-    { id: "add-task-btn", "data-modal-target": "#add-task-modal" },
-    "+ Add Task"
-  );
-  mainContainerBody.append(addTaskButton);
+  let addTaskButton = document.querySelector("#add-task-btn");
+
+  
+  if (!addTaskButton) {
+    addTaskButton = createElement(
+      "button",
+      { id: "add-task-btn", "data-modal-target": "#add-task-modal" },
+      "+ Add Task"
+    );
+    mainContainerBody.append(addTaskButton); 
+  }
+
+  if (appState.projects.length > 0 && appState.selectedProject) {
+    addTaskButton.style.display = "block"; 
+  } else {
+    addTaskButton.style.display = "none"; 
+  }
 }
 
 export function renderTaskItems() {
@@ -160,6 +172,7 @@ export function renderTaskItems() {
       "Click the button below to Add your first task!"
     );
     taskContainer.append(addFirstTaskText);
+    
   }
 }
 

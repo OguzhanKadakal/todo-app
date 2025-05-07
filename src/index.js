@@ -3,6 +3,7 @@ import { modalOpenButtonEvent, enableOutsideClickToCloseModals, modalCloseButton
 import { initializeProjectAddEvent, initializeProjectEditEvent, deleteProjectEvent } from "./events/projectEvents.js"
 import { initializeTaskAddEvent, initializeTaskEditEvent } from "./events/taskEvents.js"
 import { addGlobalEventListener } from "./events/eventDelegation.js";
+import appState from "./modules/appState.js";
 
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -24,7 +25,7 @@ window.addEventListener("DOMContentLoaded", () => {
     // Initialize task-related events
     initializeTaskAddEvent()
     initializeTaskEditEvent()
-
+    console.log("Projects in AppState:", appState.projects);
 
   });
   
