@@ -17,8 +17,10 @@ function handleAddProjectFormSubmit(event) {
   }
 
   const newProject = new Project(projectTitle);
+  appState.selectedProject = newProject;
   appState.addProject(newProject);
   renderProjectItems();
+  renderAddTaskButton();
   projectTitleInput.value = "";
 
   const modal = document.querySelector("#add-project-modal");
@@ -154,17 +156,22 @@ export function deleteProjectEvent() {
   confirmButton.addEventListener("click", () => {
     const projectId = deleteProjectForm.dataset.projectId;
     const projectToDelete = appState.getProjectById(projectId);
-
+  
     if (projectToDelete) {
       appState.removeProject(projectToDelete);
+  
       if (appState.selectedProject === projectToDelete) {
         appState.selectedProject = appState.projects[0] || null;
       }
+  
+      // Re-render the project list, task header, task items, and add task button
       renderProjectItems();
       renderTaskHeader();
       renderTaskItems();
-      renderAddTaskButton();
+      renderAddTaskButton(); // Ensure the button is updated
+  
       deleteProjectForm.close();
+  
       console.log("Number of Projects:", appState.projects.length);
       console.log("Selected Project:", appState.selectedProject);
     } else {

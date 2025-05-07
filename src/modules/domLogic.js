@@ -114,20 +114,22 @@ export function renderAddTaskButton() {
   const mainContainerBody = document.querySelector(".main-container-body");
   let addTaskButton = document.querySelector("#add-task-btn");
 
-  
   if (!addTaskButton) {
     addTaskButton = createElement(
       "button",
       { id: "add-task-btn", "data-modal-target": "#add-task-modal" },
       "+ Add Task"
     );
-    mainContainerBody.append(addTaskButton); 
+    mainContainerBody.append(addTaskButton);
   }
 
+  console.log("Number of Projects:", appState.projects.length);
+  console.log("Selected Project:", appState.selectedProject);
+
   if (appState.projects.length > 0 && appState.selectedProject) {
-    addTaskButton.style.display = "block"; 
+    addTaskButton.style.display = "block";
   } else {
-    addTaskButton.style.display = "none"; 
+    addTaskButton.style.display = "none";
   }
 }
 

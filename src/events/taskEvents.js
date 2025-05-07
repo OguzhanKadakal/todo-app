@@ -190,6 +190,13 @@ export function deleteTaskEvent() {
   
       if (event.target.matches(".delete-modal-confirm-btn")) {
         const taskId = deleteTaskModal.dataset.taskId;
+      
+        if (!appState.selectedProject) {
+          console.error("No selected project. Cannot delete task.");
+          deleteTaskModal.close();
+          return;
+        }
+      
         const taskToDelete = appState.selectedProject.getTodoById(taskId);
         if (taskToDelete) {
           appState.selectedProject.removeTodo(taskToDelete);
