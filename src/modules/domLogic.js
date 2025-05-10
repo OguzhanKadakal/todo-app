@@ -1,6 +1,7 @@
 import appState from "./appState.js";
 import { format } from "date-fns";
 import Project from "./project.js";
+import { id } from "date-fns/locale";
 
 export function createElement(tag, attributes = {}, textContent = "") {
   const element = document.createElement(tag);
@@ -22,6 +23,8 @@ export function initializeUI() {
   renderAddProjectButton();
   renderMainContainer();
   renderTaskHeader();
+  renderFilterOption()
+  renderSortOption();
   renderAddTaskButton();
   renderTaskItems();
   renderAddProjectModal()
@@ -108,6 +111,57 @@ export function renderTaskHeader() {
     appState.selectedProject?.title || "Create a New Project to Start!"
   );
   mainContainerHeader.append(projectTitle);
+}
+
+function renderSortOption() {
+  const mainContainerBody = document.querySelector(".main-container-body");
+  const taskContainer = document.querySelector("#task-container"); // Select the task container
+
+  const sortContainer = createElement("div", { class: "sort-container" }); // Create a container div
+  const sortLabel = createElement(
+    "label",
+    { for: "sort-options", class: "sort-label" },
+    "Sort Tasks:"
+  );
+  const sortSelect = createElement("select", { name: "sort-options", id: "sort-options" });
+  const sortByDefault = createElement("option", { value: "default" }, "Default");
+  const sortByTitle = createElement("option", { value: "title" }, "Title");
+  const sortByDate = createElement("option", { value: "date" }, "Due Date");
+  const sortByPriority = createElement("option", { value: "priority" }, "Priority");
+
+  // Append options to the dropdown
+  sortSelect.append(sortByDefault, sortByTitle, sortByDate, sortByPriority);
+
+  // Append the label and dropdown to the container
+  sortContainer.append(sortLabel, sortSelect);
+
+  // Insert the container before the task container
+  mainContainerBody.insertBefore(sortContainer, taskContainer);
+}
+
+function renderFilterOption() {
+  const mainContainerBody = document.querySelector(".main-container-body");
+  const taskContainer = document.querySelector("#task-container"); // Select the task container
+
+  const filterContainer = createElement("div", { class: "filter-container" }); // Create a container div
+  const filterLabel = createElement(
+    "label",
+    { for: "filter-options", class: "filter-label" },
+    "Filter Tasks:"
+  );
+  const filterSelect = createElement("select", { name: "filter-options", id: "filter-options" });
+  const filterAll = createElement("option", { value: "all" }, "All");
+  const filterCompleted = createElement("option", { value: "completed" }, "Completed");
+  const filterNotCompleted = createElement("option", { value: "not-completed" }, "Not Completed");
+
+  // Append options to the dropdown
+  filterSelect.append(filterAll, filterCompleted, filterNotCompleted);
+
+  // Append the label and dropdown to the container
+  filterContainer.append(filterLabel, filterSelect);
+
+  // Insert the container before the task container
+  mainContainerBody.insertBefore(filterContainer, taskContainer);
 }
 
 export function renderAddTaskButton() {
