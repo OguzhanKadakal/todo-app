@@ -208,3 +208,33 @@ export function deleteTaskEvent() {
       }
     });
   }
+
+  //Toggle Completed
+
+  export function completeTaskEvent() {
+    addGlobalEventListener("change", ".task-item input[type='checkbox']", (event) => {
+      const taskItem = event.target.closest(".task-item");
+      if (!taskItem) {
+        console.error("No parent task-item element found for the checkbox.");
+        return;
+      }
+  
+      const taskId = taskItem.getAttribute("data-id");
+      if (!taskId) {
+        console.error("No data-id attribute found on the parent task-item element.");
+        return;
+      }
+  
+      const taskToToggle = appState.selectedProject.getTodoById(taskId);
+      if (!taskToToggle) {
+        console.error("Task not found.");
+        return;
+      }
+  
+      // Toggle the completed status
+      taskToToggle.toggleCompleted();
+  
+      // Re-render the task list
+      renderTaskItems();
+    });
+  }

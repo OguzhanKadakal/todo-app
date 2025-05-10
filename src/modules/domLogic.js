@@ -160,6 +160,14 @@ export function renderTaskItems() {
       const todoEditIcon = createIcon("material-symbols-outlined task-edit-icon", "edit_square");
       const todoDeleteIcon = createIcon("material-symbols-outlined task-delete-icon", "delete");
       todoEditIcon.setAttribute("data-modal-target", "#edit-task-modal");
+
+      if (t.completed) {
+        todoCheckbox.checked = true;
+        todoTitle.style.textDecoration = "line-through";
+        todoDescription.style.textDecoration = "line-through";
+        todoDate.style.textDecoration = "line-through";
+        todoPriority.style.textDecoration = "line-through";
+      }
   
 
       todoItem.append(todoCheckbox, todoTDContainer, todoDate, todoPriority, todoIconContainer);
