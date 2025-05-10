@@ -125,12 +125,23 @@ function renderSortOption() {
   );
   const sortSelect = createElement("select", { name: "sort-options", id: "sort-options" });
   const sortByDefault = createElement("option", { value: "default" }, "Default");
-  const sortByTitle = createElement("option", { value: "title" }, "Title");
-  const sortByDate = createElement("option", { value: "date" }, "Due Date");
-  const sortByPriority = createElement("option", { value: "priority" }, "Priority");
+  const sortByTitleAsc = createElement("option", { value: "title-asc" }, "Title (A-Z)");
+  const sortByTitleDesc = createElement("option", { value: "title-desc" }, "Title (Z-A)");
+  const sortByDateAsc = createElement("option", { value: "date-asc" }, "Due Date (Ascending)");
+  const sortByDateDesc = createElement("option", { value: "date-desc" }, "Due Date (Descending)");
+  const sortByPriorityAsc = createElement("option", { value: "priority-asc" }, "Priority (Low to High)");
+  const sortByPriorityDesc = createElement("option", { value: "priority-desc" }, "Priority (High to Low)");
 
   // Append options to the dropdown
-  sortSelect.append(sortByDefault, sortByTitle, sortByDate, sortByPriority);
+  sortSelect.append(
+    sortByDefault,
+    sortByTitleAsc,
+    sortByTitleDesc,
+    sortByDateAsc,
+    sortByDateDesc,
+    sortByPriorityAsc,
+    sortByPriorityDesc
+  );
 
   // Append the label and dropdown to the container
   sortContainer.append(sortLabel, sortSelect);

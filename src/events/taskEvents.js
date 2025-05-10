@@ -1,5 +1,4 @@
 import appState from "../modules/appState";
-import Project from "../modules/project";
 import Todo from "../modules/todo";
 import { renderTaskItems } from "../modules/domLogic";
 import { addGlobalEventListener } from "./eventDelegation.js";
@@ -240,26 +239,48 @@ export function deleteTaskEvent() {
   }
 
   export function sortTasksEvent() {
-    document.querySelector("#sort-options").addEventListener("change", (event) => {
-      const selectedOption = event.target.value; // Get the selected option
+    const sortDropdown = document.querySelector("#sort-options");
+    if (!sortDropdown) {
+      console.error("Sort dropdown not found in the DOM.");
+      return;
+    }
+  
+    sortDropdown.addEventListener("change", (event) => {
+      const selectedOption = event.target.value; // Get the selected sorting option
       const selectedProject = appState.selectedProject; // Get the currently selected project
   
       if (!selectedProject) {
-          console.error("No project selected.");
-          return;
+        console.error("No project selected.");
+        return;
       }
   
       // Call the appropriate sorting method based on the selected option
-      if (selectedOption === "title") {
-          selectedProject.sortTodosByTitle();
-      } else if (selectedOption === "date") {
-          selectedProject.sortTodosByDate();
-      } else if (selectedOption === "priority") {
-          selectedProject.sortTodosByPriority();
+      switch (selectedOption) {
+        case "title-asc":
+          selectedProject.sortTodosByTitle("asc");
+          break;
+        case "title-desc":
+          selectedProject.sortTodosByTitle("desc");
+          break;
+        case "date-asc":
+          selectedProject.sortTodosByDate("asc");
+          break;
+        case "date-desc":
+          selectedProject.sortTodosByDate("desc");
+          break;
+        case "priority-asc":
+          selectedProject.sortTodosByPriority("asc");
+          break;
+        case "priority-desc":
+          selectedProject.sortTodosByPriority("desc");
+          break;
+        default:
+          console.error(`Unknown sorting option: ${selectedOption}`);
+          break;
       }
   
       // Re-render the task list after sorting
-      renderTaskItems();
-  });
+      renderTaskItems(selectedProject.todos);
+    });
   }
 

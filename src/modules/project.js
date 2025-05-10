@@ -24,17 +24,35 @@ class Project {
         this.todos = this.todos.filter(t => t !== todo);
     }
 
-    sortTodosByTitle() {
-        this.todos.sort((a, b) => a.title.localeCompare(b.title)); 
+    sortTodosByTitle(direction = "asc") {
+        this.todos.sort((a, b) => {
+            if (direction === "asc") {
+                return a.title.localeCompare(b.title);
+            } else {
+                return b.title.localeCompare(a.title);
+            }
+        });
     }
 
-    sortTodosByDate() {
-        this.todos.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate)); 
+    sortTodosByDate(direction = "asc") {
+        this.todos.sort((a, b) => {
+            if (direction === "asc") {
+                return new Date(a.dueDate) - new Date(b.dueDate);
+            } else {
+                return new Date(b.dueDate) - new Date(a.dueDate);
+            }
+        });
     }
 
-    sortTodosByPriority() {
+    sortTodosByPriority(direction = "asc") {
         const priorityOrder = { high: 1, medium: 2, low: 3 };
-        this.todos.sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]); 
+        this.todos.sort((a, b) => {
+            if (direction === "asc") {
+                return priorityOrder[a.priority] - priorityOrder[b.priority];
+            } else {
+                return priorityOrder[b.priority] - priorityOrder[a.priority];
+            }
+        });
     }
 
     resetToDefault() {
