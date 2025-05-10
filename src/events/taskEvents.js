@@ -238,3 +238,28 @@ export function deleteTaskEvent() {
       renderTaskItems();
     });
   }
+
+  export function sortTasksEvent() {
+    document.querySelector("#sort-options").addEventListener("change", (event) => {
+      const selectedOption = event.target.value; // Get the selected option
+      const selectedProject = appState.selectedProject; // Get the currently selected project
+  
+      if (!selectedProject) {
+          console.error("No project selected.");
+          return;
+      }
+  
+      // Call the appropriate sorting method based on the selected option
+      if (selectedOption === "title") {
+          selectedProject.sortTodosByTitle();
+      } else if (selectedOption === "date") {
+          selectedProject.sortTodosByDate();
+      } else if (selectedOption === "priority") {
+          selectedProject.sortTodosByPriority();
+      }
+  
+      // Re-render the task list after sorting
+      renderTaskItems();
+  });
+  }
+

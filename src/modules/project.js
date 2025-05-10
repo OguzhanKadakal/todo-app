@@ -1,9 +1,9 @@
 class Project {
-    constructor(title,todos = []) {
+    constructor(title, todos = []) {
         this.id = `${Date.now()}-${Math.random()}`;
         this.title = title;
         this.todos = todos;
-        this.originalTodos = [...todos];
+        this.originalTodos = [...todos]; // Store the original order
     }
 
     updateTitle(title) {
@@ -25,20 +25,21 @@ class Project {
     }
 
     sortTodosByTitle() {
-        this.todos = this.todos.sort((a,b) => a.title - b.title);
+        this.todos.sort((a, b) => a.title.localeCompare(b.title)); 
     }
 
     sortTodosByDate() {
-        this.todos = this.todos.sort((a,b) => a.dueDate - b.dueDate);
+        this.todos.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate)); 
     }
 
     sortTodosByPriority() {
         const priorityOrder = { high: 1, medium: 2, low: 3 };
-        this.todos = this.todos.sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]);
+        this.todos.sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]); 
     }
+
     resetToDefault() {
-        this.todos = [...this.originalTodos];
+        this.todos = [...this.originalTodos]; 
     }
-    }
+}
 
 export default Project;
