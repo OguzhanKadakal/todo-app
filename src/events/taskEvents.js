@@ -284,3 +284,44 @@ export function deleteTaskEvent() {
     });
   }
 
+export function filterTaskEvent() {
+  const filterDropdown = document.querySelector("#filter-options");
+
+  if (!filterDropdown) {
+    console.error("Filter dropdown not found in the DOM.");
+    return;
+  }
+
+  filterDropdown.addEventListener("change", (event) => {
+    const selectedOption = event.target.value; // Get the selected filter option
+    const selectedProject = appState.selectedProject; // Get the currently selected project
+
+    if (!selectedProject) {
+      console.error("No project selected.");
+      return;
+    }
+
+    // Iterate over all task items in the DOM
+    const taskItems = document.querySelectorAll(".task-item");
+    taskItems.forEach((taskItem) => {
+      const taskId = taskItem.getAttribute("data-id");
+      const task = selectedProject.todos.find((todo) => todo.id === taskId);
+
+      if (!task) {
+        console.error(`Task with ID ${taskId} not found.`);
+        return;
+      }
+
+      // Show or hide tasks based on the selected filter option
+      if (selectedOption === "completed" && task.completed) {
+        taskItem.style.display = "block"; // Show completed tasks
+      } else if (selectedOption === "not-completed" && !task.completed) {
+        taskItem.style.display = "block"; // Show not completed tasks
+      } else if (selectedOption === "all") {
+        taskItem.style.display = "block"; // Show all tasks
+      } else {
+        taskItem.style.display = "none"; // Hide tasks that don't match the filter
+      }
+    });
+  });
+}

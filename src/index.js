@@ -1,7 +1,7 @@
 import { initializeUI } from "./modules/domLogic.js";
 import { modalOpenButtonEvent, enableOutsideClickToCloseModals, modalCloseButtonEvent  } from "./events/modalEvents.js";
 import { initializeProjectAddEvent, initializeProjectEditEvent, deleteProjectEvent } from "./events/projectEvents.js"
-import { initializeTaskAddEvent, initializeTaskEditEvent, deleteTaskEvent, completeTaskEvent, sortTasksEvent } from "./events/taskEvents.js"
+import { initializeTaskAddEvent, initializeTaskEditEvent, deleteTaskEvent, completeTaskEvent, sortTasksEvent, filterTaskEvent } from "./events/taskEvents.js"
 import { addGlobalEventListener } from "./events/eventDelegation.js";
 
 
@@ -27,6 +27,7 @@ window.addEventListener("DOMContentLoaded", () => {
     initializeTaskEditEvent()
     deleteTaskEvent();
     completeTaskEvent()
-    sortTasksEvent()
+    sortTasksEvent();
+    filterTaskEvent();
   });
   
