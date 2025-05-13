@@ -179,3 +179,28 @@ export function deleteProjectEvent() {
     }
   });
 }
+
+export function changeSelectedProjectEvent() {
+  addGlobalEventListener("click", ".project-item", (event) => {
+    const projectItem = event.target.closest(".project-item");
+    if (!projectItem) {
+      console.error("No project item found for the clicked element.");
+      return;
+    }
+
+    const projectId = projectItem.getAttribute("data-id");
+    if (!projectId) {
+      console.error("No data-id attribute found on the project item.");
+      return;
+    }
+
+    // Use the changeSelectedProject method to update the selected project
+    appState.changeSelectedProject(projectId);
+
+    // Re-render the task header and task items for the selected project
+    renderTaskHeader();
+    renderTaskItems(appState.selectedProject.todos);
+
+    console.log("Selected Project Changed:", appState.selectedProject);
+  });
+}
