@@ -56,7 +56,8 @@ class Project {
     }
 
     resetToDefault() {
-        this.todos = [...this.originalTodos]; 
+        this.todos = [...this.originalTodos];
+        this.filteredTodos = [...this.originalTodos];
     }
 }
 

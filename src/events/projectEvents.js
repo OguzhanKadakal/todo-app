@@ -2,6 +2,7 @@ import appState from "../modules/appState";
 import Project from "../modules/project";
 import { renderProjectItems, renderTaskHeader, renderTaskItems, renderAddTaskButton } from "../modules/domLogic";
 import { addGlobalEventListener } from "./eventDelegation.js";
+import { saveToLocalStorage } from "../modules/storage";
 
 //Add
 function handleAddProjectFormSubmit(event) {
@@ -19,6 +20,9 @@ function handleAddProjectFormSubmit(event) {
   const newProject = new Project(projectTitle);
   appState.selectedProject = newProject;
   appState.addProject(newProject);
+
+  saveToLocalStorage(appState);
+
   renderProjectItems();
   renderAddTaskButton();
   projectTitleInput.value = "";
@@ -69,6 +73,7 @@ function handleEditProjectFormSubmit(event) {
   }
 
   projectToEdit.updateTitle(editProjectTitle); // Use the updateTitle method
+  saveToLocalStorage(appState);
 
   // Re-render the project list and header
   renderProjectItems();
@@ -156,23 +161,21 @@ export function deleteProjectEvent() {
   confirmButton.addEventListener("click", () => {
     const projectId = deleteProjectForm.dataset.projectId;
     const projectToDelete = appState.getProjectById(projectId);
-  
+
     if (projectToDelete) {
-      appState.removeProject(projectToDelete);
-  
-      if (appState.selectedProject === projectToDelete) {
-        appState.selectedProject = appState.projects[0] || null;
-      }
-  
-      // Re-render the project list, task header, task items, and add task button
-      renderProjectItems();
-      renderTaskHeader();
-      renderTaskItems();
-      renderAddTaskButton(); // Ensure the button is updated
-  
-      deleteProjectForm.close();
+        appState.removeProject(projectToDelete);
+
+        saveToLocalStorage(appState);
+
+        // Re-render the project list, task header, task items, and add task button
+        renderProjectItems();
+        renderTaskHeader();
+        renderTaskItems();
+        renderAddTaskButton(); // Ensure the button is updated
+
+        deleteProjectForm.close();
     } else {
-      console.error("Project to delete not found.");
+        console.error("Project to delete not found.");
     }
   });
 }
@@ -193,6 +196,7 @@ export function changeSelectedProjectEvent() {
 
     // Use the changeSelectedProject method to update the selected project
     appState.changeSelectedProject(projectId);
+    saveToLocalStorage(appState);
 
     // Re-render the task header and task items for the selected project
     renderTaskHeader();

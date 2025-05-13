@@ -7,26 +7,27 @@ import { addGlobalEventListener } from "./events/eventDelegation.js";
 window.addEventListener("DOMContentLoaded", () => {
     // Initialize the UI
     initializeUI();
+
     // Attach modal open events for buttons
     addGlobalEventListener("click", ".modal", enableOutsideClickToCloseModals);
 
     // Close modals when clicked outside of the modal
     addGlobalEventListener("click", "[data-modal-target]", modalOpenButtonEvent);
 
-    // Close modals when clicked when cancel button of modal clicked
+    // Close modals when cancel button of modal is clicked
     addGlobalEventListener("click", ".modal .cancel-btn", modalCloseButtonEvent);
-    
+
     // Initialize project-related events
-    initializeProjectAddEvent()
-    initializeProjectEditEvent()
-    deleteProjectEvent()
-    changeSelectedProjectEvent()
+    initializeProjectAddEvent();
+    initializeProjectEditEvent();
+    deleteProjectEvent();
+    changeSelectedProjectEvent();
+
     // Initialize task-related events
-    initializeTaskAddEvent()
-    initializeTaskEditEvent()
+    initializeTaskAddEvent();
+    initializeTaskEditEvent();
     deleteTaskEvent();
-    completeTaskEvent()
+    completeTaskEvent();
     sortTasksEvent();
     filterTaskEvent();
-  });
-  
+});

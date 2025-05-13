@@ -1,4 +1,5 @@
 import Project from "./project.js";
+import { loadFromLocalStorage } from "./storage.js";
 
 class AppState {
   constructor() {
@@ -30,10 +31,16 @@ class AppState {
   }
 
   initializeApp() {
-    const defaultProject = new Project("My First Project");
-    this.projects.push(defaultProject);
-    this.selectedProject = defaultProject;
-  }
+    // Load data from local storage
+    loadFromLocalStorage(this, Project);
+
+    // If no projects exist, create a default project
+    if (this.projects.length === 0) {
+        const defaultProject = new Project("My First Project");
+        this.projects.push(defaultProject);
+        this.selectedProject = defaultProject;
+    }
+}
 
   changeSelectedProject(id) {
     const project = this.projects.find((project) => project.id === id);

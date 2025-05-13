@@ -2,6 +2,7 @@ import appState from "../modules/appState";
 import Todo from "../modules/todo";
 import { renderTaskItems } from "../modules/domLogic";
 import { addGlobalEventListener } from "./eventDelegation.js";
+import { saveToLocalStorage } from "../modules/storage";
 
 function handleAddTaskFormSubmit(event) {
   event.preventDefault();
@@ -26,6 +27,7 @@ function handleAddTaskFormSubmit(event) {
     taskPriority
   );
   appState.selectedProject.addTodo(newTodo);
+  saveToLocalStorage(appState);
   renderTaskItems();
   taskTitleInput.value = "";
   taskDescriptionInput.value = "";
@@ -92,6 +94,8 @@ function handleEditTaskFormSubmit(event) {
     dueDate: updatedDueDate,
     priority: updatedPriority,
   });
+
+  saveToLocalStorage(appState);
 
   // Re-render the task list
   renderTaskItems();
@@ -199,6 +203,9 @@ export function deleteTaskEvent() {
         const taskToDelete = appState.selectedProject.getTodoById(taskId);
         if (taskToDelete) {
           appState.selectedProject.removeTodo(taskToDelete);
+
+          saveToLocalStorage(appState);
+
           renderTaskItems();
           deleteTaskModal.close();
         } else {
@@ -232,6 +239,8 @@ export function deleteTaskEvent() {
   
       // Toggle the completed status
       taskToToggle.toggleCompleted();
+
+      saveToLocalStorage(appState);
   
       // Re-render the task list
       renderTaskItems();
@@ -285,43 +294,48 @@ export function deleteTaskEvent() {
   }
 
 export function filterTaskEvent() {
-  const filterDropdown = document.querySelector("#filter-options");
+    const filterDropdown = document.querySelector("#filter-options");
 
-  if (!filterDropdown) {
-    console.error("Filter dropdown not found in the DOM.");
-    return;
-  }
-
-  filterDropdown.addEventListener("change", (event) => {
-    const selectedOption = event.target.value; // Get the selected filter option
-    const selectedProject = appState.selectedProject; // Get the currently selected project
-
-    if (!selectedProject) {
-      console.error("No project selected.");
-      return;
+    if (!filterDropdown) {
+        console.error("Filter dropdown not found in the DOM.");
+        return;
     }
 
-    // Iterate over all task items in the DOM
-    const taskItems = document.querySelectorAll(".task-item");
-    taskItems.forEach((taskItem) => {
-      const taskId = taskItem.getAttribute("data-id");
-      const task = selectedProject.todos.find((todo) => todo.id === taskId);
+    console.log("Filter Task Event Initialized");
 
-      if (!task) {
-        console.error(`Task with ID ${taskId} not found.`);
-        return;
-      }
+    filterDropdown.addEventListener("change", (event) => {
+        const selectedOption = event.target.value; // Get the selected filter option
+        const selectedProject = appState.selectedProject; // Get the currently selected project
 
-      // Show or hide tasks based on the selected filter option
-      if (selectedOption === "completed" && task.completed) {
-        taskItem.style.display = "block"; // Show completed tasks
-      } else if (selectedOption === "not-completed" && !task.completed) {
-        taskItem.style.display = "block"; // Show not completed tasks
-      } else if (selectedOption === "all") {
-        taskItem.style.display = "block"; // Show all tasks
-      } else {
-        taskItem.style.display = "none"; // Hide tasks that don't match the filter
-      }
+        console.log("Selected Option:", selectedOption);
+        console.log("Selected Project:", selectedProject);
+
+        if (!selectedProject) {
+            console.error("No project selected.");
+            return;
+        }
+
+        // Iterate over all task items in the DOM
+        const taskItems = document.querySelectorAll(".task-item");
+        taskItems.forEach((taskItem) => {
+            const taskId = taskItem.getAttribute("data-id");
+            const task = selectedProject.todos.find((todo) => todo.id === taskId);
+
+            if (!task) {
+                console.error(`Task with ID ${taskId} not found.`);
+                return;
+            }
+
+            // Show or hide tasks based on the selected filter option
+            if (selectedOption === "completed" && task.completed) {
+                taskItem.style.display = "block"; // Show completed tasks
+            } else if (selectedOption === "not-completed" && !task.completed) {
+                taskItem.style.display = "block"; // Show not completed tasks
+            } else if (selectedOption === "all") {
+                taskItem.style.display = "block"; // Show all tasks
+            } else {
+                taskItem.style.display = "none"; // Hide tasks that don't match the filter
+            }
+        });
     });
-  });
 }

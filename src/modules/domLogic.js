@@ -1,7 +1,6 @@
 import appState from "./appState.js";
 import { format } from "date-fns";
-import Project from "./project.js";
-import { id } from "date-fns/locale";
+
 
 export function createElement(tag, attributes = {}, textContent = "") {
   const element = document.createElement(tag);
