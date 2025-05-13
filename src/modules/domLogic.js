@@ -188,9 +188,6 @@ export function renderAddTaskButton() {
     mainContainerBody.append(addTaskButton);
   }
 
-  console.log("Number of Projects:", appState.projects.length);
-  console.log("Selected Project:", appState.selectedProject);
-
   if (appState.projects.length > 0 && appState.selectedProject) {
     addTaskButton.style.display = "block";
   } else {

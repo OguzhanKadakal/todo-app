@@ -171,9 +171,6 @@ export function deleteProjectEvent() {
       renderAddTaskButton(); // Ensure the button is updated
   
       deleteProjectForm.close();
-  
-      console.log("Number of Projects:", appState.projects.length);
-      console.log("Selected Project:", appState.selectedProject);
     } else {
       console.error("Project to delete not found.");
     }
@@ -201,6 +198,5 @@ export function changeSelectedProjectEvent() {
     renderTaskHeader();
     renderTaskItems(appState.selectedProject.todos);
 
-    console.log("Selected Project Changed:", appState.selectedProject);
   });
 }
