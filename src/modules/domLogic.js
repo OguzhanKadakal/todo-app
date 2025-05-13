@@ -128,8 +128,8 @@ function renderSortOption() {
   const sortByTitleDesc = createElement("option", { value: "title-desc" }, "Title (Z-A)");
   const sortByDateAsc = createElement("option", { value: "date-asc" }, "Due Date (Ascending)");
   const sortByDateDesc = createElement("option", { value: "date-desc" }, "Due Date (Descending)");
-  const sortByPriorityAsc = createElement("option", { value: "priority-asc" }, "Priority (Low to High)");
-  const sortByPriorityDesc = createElement("option", { value: "priority-desc" }, "Priority (High to Low)");
+  const sortByPriorityAsc = createElement("option", { value: "priority-asc" }, "Priority (High to Low)");
+  const sortByPriorityDesc = createElement("option", { value: "priority-desc" }, "Priority (Low to High)");
 
   // Append options to the dropdown
   sortSelect.append(
