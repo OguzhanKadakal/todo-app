@@ -22,16 +22,15 @@ export function initializeUI() {
   renderAddProjectButton();
   renderMainContainer();
   renderTaskHeader();
-  renderFilterOption()
-  renderSortOption();
+  renderFilterSortWrapper();
   renderAddTaskButton();
   renderTaskItems();
-  renderAddProjectModal()
-  renderEditProjectModal()
-  renderAddTaskModal()
-  renderEditTaskModal()
-  renderProjectDeleteModal()
-  renderTaskDeleteModal()
+  renderAddProjectModal();
+  renderEditProjectModal();
+  renderAddTaskModal();
+  renderEditTaskModal();
+  renderProjectDeleteModal();
+  renderTaskDeleteModal();
 }
 
 function createItemContainer(id) {
@@ -109,10 +108,44 @@ export function renderTaskHeader() {
   mainContainerHeader.append(projectTitle);
 }
 
-function renderSortOption() {
+function renderFilterSortWrapper() {
   const mainContainerBody = document.querySelector(".main-container-body");
   const taskContainer = document.querySelector("#task-container"); // Select the task container
 
+  // Create the wrapper div
+  const filterSortWrapper = createElement("div", { class: "filter-sort-wrapper" });
+
+  // Append the wrapper before the task container
+  mainContainerBody.insertBefore(filterSortWrapper, taskContainer);
+
+  // Render filter and sort options inside the wrapper
+  renderFilterOption(filterSortWrapper);
+  renderSortOption(filterSortWrapper);
+}
+
+function renderFilterOption(wrapper) {
+  const filterContainer = createElement("div", { class: "filter-container" }); // Create a container div
+  const filterLabel = createElement(
+    "label",
+    { for: "filter-options", class: "filter-label" },
+    "Filter Tasks:"
+  );
+  const filterSelect = createElement("select", { name: "filter-options", id: "filter-options" });
+  const filterAll = createElement("option", { value: "all" }, "All");
+  const filterCompleted = createElement("option", { value: "completed" }, "Completed");
+  const filterNotCompleted = createElement("option", { value: "not-completed" }, "Not Completed");
+
+  // Append options to the dropdown
+  filterSelect.append(filterAll, filterCompleted, filterNotCompleted);
+
+  // Append the label and dropdown to the container
+  filterContainer.append(filterLabel, filterSelect);
+
+  // Append the filter container to the wrapper
+  wrapper.append(filterContainer);
+}
+
+function renderSortOption(wrapper) {
   const sortContainer = createElement("div", { class: "sort-container" }); // Create a container div
   const sortLabel = createElement(
     "label",
@@ -142,33 +175,8 @@ function renderSortOption() {
   // Append the label and dropdown to the container
   sortContainer.append(sortLabel, sortSelect);
 
-  // Insert the container before the task container
-  mainContainerBody.insertBefore(sortContainer, taskContainer);
-}
-
-function renderFilterOption() {
-  const mainContainerBody = document.querySelector(".main-container-body");
-  const taskContainer = document.querySelector("#task-container"); // Select the task container
-
-  const filterContainer = createElement("div", { class: "filter-container" }); // Create a container div
-  const filterLabel = createElement(
-    "label",
-    { for: "filter-options", class: "filter-label" },
-    "Filter Tasks:"
-  );
-  const filterSelect = createElement("select", { name: "filter-options", id: "filter-options" });
-  const filterAll = createElement("option", { value: "all" }, "All");
-  const filterCompleted = createElement("option", { value: "completed" }, "Completed");
-  const filterNotCompleted = createElement("option", { value: "not-completed" }, "Not Completed");
-
-  // Append options to the dropdown
-  filterSelect.append(filterAll, filterCompleted, filterNotCompleted);
-
-  // Append the label and dropdown to the container
-  filterContainer.append(filterLabel, filterSelect);
-
-  // Insert the container before the task container
-  mainContainerBody.insertBefore(filterContainer, taskContainer);
+  // Append the sort container to the wrapper
+  wrapper.append(sortContainer);
 }
 
 export function renderAddTaskButton() {
