@@ -63,6 +63,7 @@ img {
     margin-top: 1rem;
     align-self: center;
     font-family: 'Poppins', sans-serif;
+    font-size: 3rem;
 }
 
 #project-container {
@@ -149,3 +150,27 @@ img {
     transition: color 0.3s ease-in-out;
 }
 
+/* Main*/
+
+.main-container {
+    display: grid;
+    grid-template-rows: 100px 1fr;
+    grid-template-columns: auto;
+    margin-right: 20px;
+}
+
+.main-container-header {
+    border-bottom: 2px solid var(--border-color);
+    padding: 1rem;
+    display: flex;
+}
+
+#project-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 2rem;
+    align-self: self-end;
+}
+
+.main-container-body {
+    margin-top: 0.8rem;
+}

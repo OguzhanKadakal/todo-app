@@ -102,7 +102,7 @@ export function renderTaskHeader() {
   const mainContainerHeader = document.querySelector(".main-container-header");
   mainContainerHeader.innerHTML= "";
   const projectTitle = createElement(
-    "h1",
+    "h2",
     { id: "project-title" },
     appState.selectedProject?.title || "Create a New Project to Start!"
   );
