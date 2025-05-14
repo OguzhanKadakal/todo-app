@@ -11,6 +11,17 @@ module.exports = {
       title: 'Todo App',            
     }),
   ],
+  module: {
+    rules: [
+        {
+            test: /\.css$/i, 
+            use: ["style-loader", "css-loader"], 
+        },
+    ],
+  },
+  resolve: {
+    extensions: [".js", ".css"],
+  },
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),

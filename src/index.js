@@ -3,6 +3,7 @@ import { modalOpenButtonEvent, enableOutsideClickToCloseModals, modalCloseButton
 import { initializeProjectAddEvent, initializeProjectEditEvent, deleteProjectEvent, changeSelectedProjectEvent } from "./events/projectEvents.js"
 import { initializeTaskAddEvent, initializeTaskEditEvent, deleteTaskEvent, completeTaskEvent, sortTasksEvent, filterTaskEvent } from "./events/taskEvents.js"
 import { addGlobalEventListener } from "./events/eventDelegation.js";
+import "./styles.css"
 
 window.addEventListener("DOMContentLoaded", () => {
     // Initialize the UI
