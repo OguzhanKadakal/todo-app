@@ -54,20 +54,17 @@ export function renderProjectItems() {
   projectContainer.innerHTML = "";
 
   appState.projects.forEach((p) => {
-    const projectItem = createElement(
-      "li",
-      {
-        class: "project-item",
-        "data-id": p.id, //data-id for easier reference
-      },
-      p.title
-    );
+    const projectItem = createElement("li", {
+      class: "project-item",
+      "data-id": p.id, //data-id for easier reference
+    });
 
+    const projectTitle = createElement("p", { class: "project-title" }, p.title);
     const projectEditIcon = createIcon("material-symbols-outlined project-edit-icon", "edit_square");
     const projectDeleteIcon = createIcon("material-symbols-outlined project-delete-icon", "delete");
     projectEditIcon.setAttribute("data-modal-target", "#edit-project-modal");
 
-    projectItem.append(projectEditIcon, projectDeleteIcon);
+    projectItem.append(projectTitle, projectEditIcon, projectDeleteIcon);
     projectContainer.append(projectItem);
   });
 }
