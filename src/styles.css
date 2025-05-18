@@ -506,40 +506,14 @@ input[type="checkbox"] {
     transition: transform 0.1s ease-in-out;
 }
 
-#task-delete-modal {
-    font-size: 1rem;
-    font-weight: bold;
-    font-family: "Inter", sans-serif;
-}
-
-#task-delete-modal > button {
-    font-size: 1rem;
-    font-weight: bold;
-    background: var(--button-gradient);
-    padding: 0.5rem;
-    border-radius: 0.6rem;
-    font-family: "Inter", sans-serif;
-    border: 2px solid var(--text-color);
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    margin: 0.5rem;
-}
-
-#task-delete-modal > button:hover {
-    opacity: 0.8;
-    transition: opacity 0.3s ease-in-out;
-}
-
-#task-delete-modal > button:active {
-    transform: scale(0.95);
-    transition: transform 0.1s ease-in-out;
-}
-
+#task-delete-modal,
 #project-delete-modal {
     font-size: 1rem;
     font-weight: bold;
     font-family: "Inter", sans-serif;
 }
 
+#task-delete-modal > button,
 #project-delete-modal > button {
     font-size: 1rem;
     font-weight: bold;
@@ -552,11 +526,13 @@ input[type="checkbox"] {
     margin: 0.5rem;
 }
 
+#task-delete-modal > button:hover,
 #project-delete-modal > button:hover {
     opacity: 0.8;
     transition: opacity 0.3s ease-in-out;
 }
 
+#task-delete-modal > button:active,
 #project-delete-modal > button:active {
     transform: scale(0.95);
     transition: transform 0.1s ease-in-out;
