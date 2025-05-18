@@ -6,7 +6,11 @@
   --edit-icon-color: #6abd73;
   --button-gradient: #f9f9f9;
   --modal-background: #f9f9f9;
+  --priority-low-color: #2ecc71;
+  --priority-medium-color: #f1c40f;
+  --priority-high-color: #e74c3c;
 }
+
 
 /* Reset CSS */
 * {
@@ -379,10 +383,24 @@ input[type="checkbox"] {
 .task-priority {
   color: var(--text-color);
   font-size: 1rem;
+  font-weight: bolder;
   text-align: center;
   max-width: 100px;
   min-width: 100px;
   text-transform: capitalize;
+}
+
+
+.priority-low {
+    color: var(--priority-low-color);
+}
+
+.priority-medium {
+    color: var(--priority-medium-color);
+}
+
+.priority-high {
+    color: var(--priority-high-color);
 }
 
 .icon-container {

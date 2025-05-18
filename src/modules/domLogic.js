@@ -221,7 +221,8 @@ export function renderTaskItems() {
         { class: "task-date" },
         `Due: ${t.dueDate ? format(new Date(t.dueDate), "dd MMM, yyyy") : "No due date"}`
       );
-      const todoPriority = createElement("p", {class: "task-priority"}, t.priority);
+      const priorityClass = `priority-${t.priority.toLowerCase()}`;
+      const todoPriority = createElement("p", { class: `task-priority ${priorityClass}` }, t.priority);
       const todoIconContainer = createElement("div", {class: "icon-container"});
       const todoEditIcon = createIcon("material-symbols-outlined task-edit-icon", "edit_square");
       const todoDeleteIcon = createIcon("material-symbols-outlined task-delete-icon", "delete");
