@@ -498,7 +498,7 @@ export function renderProjectDeleteModal() {
   const message = createElement(
     "p",
     { class: "delete-modal-message" },
-    "Are you sure you want to delete this project?"
+    "Delete this project? This action cannot be undone."
   );
 
   const confirmButton = createElement(
@@ -523,7 +523,7 @@ export function renderTaskDeleteModal() {
   const message = createElement(
     "p",
     { class: "delete-modal-message" },
-    "Are you sure you want to delete this task?"
+    "Delete this task? This action cannot be undone."
   );
 
   const confirmButton = createElement(
