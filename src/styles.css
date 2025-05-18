@@ -145,7 +145,7 @@ img {
   padding: 0.5rem;
   border-radius: 0.6rem;
   font-family: "Inter", sans-serif;
-  border: 1px solid var(--text-color);
+  border: 2px solid var(--text-color);
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -247,8 +247,17 @@ img {
   padding: 0.5rem;
   border-radius: 0.6rem;
   font-family: "Inter", sans-serif;
-  border: 1px solid var(--text-color);
+  border: 2px solid var(--text-color);
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#add-task-btn:hover {
+    opacity: 0.8;
+}
+
+#add-task-btn:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease-in-out;
 }
 
 .task-item {
