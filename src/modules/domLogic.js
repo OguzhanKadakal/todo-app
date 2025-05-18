@@ -234,6 +234,7 @@ export function renderTaskItems() {
         todoDescription.style.textDecoration = "line-through";
         todoDate.style.textDecoration = "line-through";
         todoPriority.style.textDecoration = "line-through";
+        todoItem.style.backgroundColor = "#d3d3d3"; // Light gray background for completed tasks
       }
   
 
