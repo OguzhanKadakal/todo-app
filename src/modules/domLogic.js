@@ -245,7 +245,7 @@ export function renderTaskItems() {
     const addFirstTaskText = createElement(
       "p",
       { class: "add-task-text" },
-      "Click the button below to Add your first task!"
+      "Use + Add Task Button to Add Your First Task!"
     );
     taskContainer.append(addFirstTaskText);
     
@@ -272,7 +272,7 @@ function renderAddProjectModal() {
       { class: "add-project-form-label", htmlFor: "add-project-name-input" },
       "Please enter a name for your project: "
   );
-  const addProjectFormInput = createElement("input", { class: "add-project-form-input", type: "text", id: "add-project-name-input", name: "project-name" });
+  const addProjectFormInput = createElement("input", { class: "add-project-form-input", type: "text", id: "add-project-name-input", name: "project-name", required: "true" });
 
   const addProjectFormSubmitButton = createElement(
     "button",
@@ -300,7 +300,7 @@ function renderEditProjectModal() {
       { class: "edit-project-form-label", htmlFor: "edit-project-name-input" },
       "Please enter a new name for the project: "
   );
-  const editProjectFormInput = createElement("input", { class: "edit-project-form-input", type: "text", id: "edit-project-name-input", name: "edit-project-name" });
+  const editProjectFormInput = createElement("input", { class: "edit-project-form-input", type: "text", id: "edit-project-name-input", name: "edit-project-name", required: "true" });
 
   const editProjectFormSubmitButton = createElement(
     "button",
@@ -335,6 +335,7 @@ function renderAddTaskModal() {
     name: "task-title",
     class: "task-form-input",
     "aria-label": "Task Title",
+    required: "true"
   });
 
   const descriptionLabel = createElement(
