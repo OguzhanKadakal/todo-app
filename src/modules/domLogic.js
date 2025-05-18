@@ -344,7 +344,7 @@ function renderAddTaskModal() {
     { for: "task-description-input", class: "task-form-label" },
     "Task Description:"
   );
-  const descriptionInput = createElement("textarea", {
+  const descriptionInput = createElement("input", {
     id: "task-description-input",
     name: "task-description",
     class: "task-form-input",
