@@ -212,55 +212,55 @@ img {
 }
 
 .filter-container {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .filter-label {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 #filter-options {
-    appearance: none;
-    background-color: #ffffff;
-    border-radius: 0.5rem;
-    padding: 0 2rem 0 0.5rem;
-    font-family: "Inter", sans-serif;
-    font-size: 1rem;
-    text-align: left;
-    color: var(--text-color);
-    cursor: pointer;
-    background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg xmlns%3D%22http://www.w3.org/2000/svg%22 viewBox%3D%220 0 24 24%22 fill%3D%22none%22 stroke%3D%22%23333333%22 stroke-width%3D%222%22 stroke-linecap%3D%22round%22 stroke-linejoin%3D%22round%22%3E%3Cpath d%3D%22M6 9l6 6 6-6%22/%3E%3C/svg%3E');
-    background-repeat: no-repeat;
-    background-position: right 0.5rem center;
-    background-size: 1rem;
+  appearance: none;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  padding: 0 2rem 0 0.5rem;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  text-align: left;
+  color: var(--text-color);
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns%3D%22http://www.w3.org/2000/svg%22 viewBox%3D%220 0 24 24%22 fill%3D%22none%22 stroke%3D%22%23333333%22 stroke-width%3D%222%22 stroke-linecap%3D%22round%22 stroke-linejoin%3D%22round%22%3E%3Cpath d%3D%22M6 9l6 6 6-6%22/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 1rem;
 }
 
 .sort-container {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .sort-label {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 #sort-options {
-    appearance: none;
-    background-color: #ffffff;
-    border-radius: 0.5rem;
-    padding: 0 1.7rem 0 0.5rem;
-    font-family: "Inter", sans-serif;
-    font-size: 1rem;
-    text-align: left;
-    color: var(--text-color);
-    cursor: pointer;
-    background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg xmlns%3D%22http://www.w3.org/2000/svg%22 viewBox%3D%220 0 24 24%22 fill%3D%22none%22 stroke%3D%22%23333333%22 stroke-width%3D%222%22 stroke-linecap%3D%22round%22 stroke-linejoin%3D%22round%22%3E%3Cpath d%3D%22M6 9l6 6 6-6%22/%3E%3C/svg%3E');
-    background-repeat: no-repeat;
-    background-position: right 0.5rem center;
-    background-size: 1rem;
+  appearance: none;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  padding: 0 1.7rem 0 0.5rem;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  text-align: left;
+  color: var(--text-color);
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns%3D%22http://www.w3.org/2000/svg%22 viewBox%3D%220 0 24 24%22 fill%3D%22none%22 stroke%3D%22%23333333%22 stroke-width%3D%222%22 stroke-linecap%3D%22round%22 stroke-linejoin%3D%22round%22%3E%3Cpath d%3D%22M6 9l6 6 6-6%22/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 1rem;
 }
 
 #task-container {
@@ -291,9 +291,21 @@ img {
   background: transparent;
 }
 
+.add-task-text {
+  font-family: "Inter", sans-serif;
+  font-weight: bold;
+  text-align: center;
+  font-size: 2rem;
+  color: var(--text-color);
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 #add-task-btn {
   align-self: center;
-  margin-bottom: 5rem;
   font-size: 1rem;
   font-weight: bold;
   background: var(--button-gradient);
@@ -305,12 +317,12 @@ img {
 }
 
 #add-task-btn:hover {
-    opacity: 0.8;
+  opacity: 0.8;
 }
 
 #add-task-btn:active {
-    transform: scale(0.95);
-    transition: transform 0.1s ease-in-out;
+  transform: scale(0.95);
+  transition: transform 0.1s ease-in-out;
 }
 
 .task-item {
@@ -421,4 +433,3 @@ input[type="checkbox"] {
 .modal::backdrop {
   background-color: rgba(0, 0, 0, 0.5);
 }
-
