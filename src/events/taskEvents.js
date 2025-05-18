@@ -328,11 +328,11 @@ export function filterTaskEvent() {
 
             // Show or hide tasks based on the selected filter option
             if (selectedOption === "completed" && task.completed) {
-                taskItem.style.display = "block"; // Show completed tasks
+                taskItem.style.display = "flex"; // Show completed tasks
             } else if (selectedOption === "not-completed" && !task.completed) {
-                taskItem.style.display = "block"; // Show not completed tasks
+                taskItem.style.display = "flex"; // Show not completed tasks
             } else if (selectedOption === "all") {
-                taskItem.style.display = "block"; // Show all tasks
+                taskItem.style.display = "flex"; // Show all tasks
             } else {
                 taskItem.style.display = "none"; // Hide tasks that don't match the filter
             }
